@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 516 136" enable-background="new 0 0 516 136" xml:space="preserve" style="background-color:#000;shape-rendering:crispedges;">
+<path fill="#fff" d="M62,34h16v68H34V54h28V34z M90,54v48h40V90h-24V78h24V54H90z M142,34v68h16V34H142z M182,34v20h-12v20h12v28
+	h16V74h12V54h-12V34H182z M274,102V54h-52v48h20v-8h12v8H274z M286,102h16V66h12v12h12V54h-40V102z M338,102h40V54h-16v24h-12V54
+	h-12V102z M406,102V78h12v24h12V54h-40v48H406z M442,54v48h40V90h-24V78h24V54H442z M493,54v1h2v4h1v-4h2v-1H493z M500,54v5h1v-3h3
+	v3h1v-5h-2v5h-1v-5H500z"/>
+<polygon fill="#ed2227" points="238,66 246,66 246,70 250,70 250,66 258,66 258,78 254,78 254,82 250,82 250,86 246,86 246,82 
+	242,82 242,78 238,78 "/>
+</svg>

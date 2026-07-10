@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Off Duty — Xia Qi</title>
+<meta name="description" content="Xia Qi off the clock: favorite games, an anime tracker, vocal synth notes on Hatsune Miku and Kasane Teto, and top soundtracks.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+<!--
+  hey, nice of you to check the source.
+  there's a hidden terminal on this page — try pressing `
+-->
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <a href="index.html" class="mark"><span class="dot"></span>XIA_QI</a>
+    <nav class="topnav">
+      <a href="stack.html">stack</a>
+      <a href="builds.html">builds</a>
+      <a href="off-duty.html">off-duty</a>
+      <a href="playlist.html">playlist</a>
+      <a href="connect.html">connect</a>
+      <span class="term-hint" title="try pressing the backtick key">`</span>
+    </nav>
+  </div>
+</div>
+
+<div class="wrap page-header">
+  <p class="breadcrumb"><a href="index.html">xia_qi</a> / off-duty</p>
+  <h1 class="page-title">Off Duty</h1>
+  <p class="page-lede">When the IDE's closed, it's usually one of these — sometimes all four at once.</p>
+</div>
+
+<main class="wrap">
+  <div class="board">
+    <div class="board-line" aria-hidden="true"></div>
+
+    <section class="node" id="gaming" data-track="copper">
+      <div class="node-marker"><span class="pad"></span><span class="idx">01</span></div>
+      <div class="node-content">
+        <p class="eyebrow">Gaming</p>
+        <h2>Current favorites</h2>
+        <p class="node-sub">No single genre has stuck — the common thread is usually a good mechanic or a soundtrack worth pausing for.</p>
+        <div class="game-grid">
+          <div class="game-card">
+            <div class="game-cover minecraft">
+              <img src="assets/Minecraft_logo.svg" alt="The Minecraft Logo" loading="lazy">
+            </div>
+            <div class="game-info">
+              <p class="game-title">Minecraft</p>
+              <p class="game-genre">Sandbox / Building</p>
+              <p class="game-desc">The one that never really ends — especially once mods enter the picture.</p>
+            </div>
+          </div>
+          <div class="game-card">
+            <div class="game-cover deltarune">
+              <img src="assets/Deltarune_logo.svg" alt="Deltarune Logo">
+            </div>
+            <div class="game-info">
+              <p class="game-title">DELTARUNE</p>
+              <p class="game-genre">RPG</p>
+              <p class="game-desc">Toby Fox's ongoing RPG — chapter by chapter, and worth the wait every time.</p>
+            </div>
+          </div>
+          <div class="game-card">
+            <div class="game-cover ultrakill">
+              <img src="assets/Ultrakill_logo.svg" alt="Ultrakill Logo" width="80" height="80">
+            </div>
+            <div class="game-info">
+              <p class="game-title">ULTRAKILL</p>
+              <p class="game-genre">FPS / Character Action</p>
+              <p class="game-desc">Fast, brutal, and precise — the kind of game that punishes hesitation.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="node" id="anime" data-track="cyan">
+      <div class="node-marker"><span class="pad"></span><span class="idx">02</span></div>
+      <div class="node-content">
+        <p class="eyebrow">Anime</p>
+        <h2>Watchlist tracker</h2>
+        <p class="node-sub">Data lives in <code>anime.json</code> — edit that file to keep this current.</p>
+        <div id="animeRoot"><p class="repo-empty">loading anime.json&hellip;</p></div>
+      </div>
+    </section>
+
+    <section class="node" id="vocal-synth" data-track="copper">
+      <div class="node-marker"><span class="pad"></span><span class="idx">03</span></div>
+      <div class="node-content">
+        <p class="eyebrow">Vocal Synth</p>
+        <h2>Hatsune Miku &amp; Kasane Teto</h2>
+        <p class="node-sub">Click a name to expand.</p>
+        <div class="accordion" id="vocalAccordion">
+          <div class="accordion-item">
+            <button class="accordion-header" type="button" aria-expanded="false">
+              <span>Hatsune Miku</span>
+              <span class="accordion-icon">+</span>
+            </button>
+            <div class="accordion-body">
+              <div class="accordion-body-inner">
+                The first of Crypton Future Media's Character Vocal Series, released in 2007 for the VOCALOID2 engine. Teal twintails, an "android diva" concept, and the voicebank that basically defined an entire genre of music production. If someone's heard of exactly one vocal synth, it's her.
+                <br><br>
+                <a href="https://vocaloid.fandom.com/wiki/Hatsune_Miku" target="_blank" rel="noopener">Read more on the Vocaloid Wiki ↗</a>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <button class="accordion-header" type="button" aria-expanded="false">
+              <span>Kasane Teto</span>
+              <span class="accordion-icon">+</span>
+            </button>
+            <div class="accordion-body">
+              <div class="accordion-body-inner">
+                Started life in 2008 as an April Fools' prank — a fake "new Vocaloid" — before actually being built as a UTAU voicebank. Red drill-twintails, chaotic community lore, and a running fandom joke that she's fueled by bread. Later got an official Synthesizer V voicebank of her own.
+                <br><br>
+                <a href="https://vocaloid.fandom.com/wiki/Kasane_Teto" target="_blank" rel="noopener">Read more on the Vocaloid Wiki ↗</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="eq copper" aria-hidden="true" style="margin-top:16px;"><span></span><span></span><span></span><span></span><span></span></div>
+      </div>
+    </section>
+
+    <section class="node" id="ost" data-track="cyan">
+      <div class="node-marker"><span class="pad"></span><span class="idx">04</span></div>
+      <div class="node-content">
+        <p class="eyebrow">Soundtracks</p>
+        <h2>On repeat right now</h2>
+        <p class="node-sub">The top 3, in rotation order.</p>
+        <div class="ost-list">
+          <a class="ost-card" href="https://www.youtube.com/watch?v=ICFPzrihGX8" target="_blank" rel="noopener">
+            <span class="ost-rank">01</span>
+            <span class="ost-meta">
+              <p class="ost-title">Flower Castle</p>
+              <p class="ost-sub">Toby Fox — DELTARUNE Chapter 5 OST</p>
+            </span>
+            <span class="ost-arrow">↗</span>
+          </a>
+          <a class="ost-card" href="https://www.youtube.com/watch?v=L5q4uYj-gyg" target="_blank" rel="noopener">
+            <span class="ost-rank">02</span>
+            <span class="ost-meta">
+              <p class="ost-title">Tenebre Rosso Sangue</p>
+              <p class="ost-sub">KEYGEN CHURCH — ULTRAKILL OST</p>
+            </span>
+            <span class="ost-arrow">↗</span>
+          </a>
+          <a class="ost-card" href="https://www.youtube.com/watch?v=x8VYWazR5mE" target="_blank" rel="noopener">
+            <span class="ost-rank">03</span>
+            <span class="ost-meta">
+              <p class="ost-title">夜に駆ける (Yoru ni Kakeru)</p>
+              <p class="ost-sub">YOASOBI</p>
+            </span>
+            <span class="ost-arrow">↗</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer>
+  <p>I am a weeb OK? Deal with it!</p>
+  <p class="hint">// there's more here than a scroll can find. try `</p>
+</footer>
+
+<!-- secret terminal -->
+<div class="term-overlay" id="termOverlay" role="dialog" aria-modal="true" aria-label="Secret terminal">
+  <div class="term-window">
+    <div class="term-titlebar">
+      <span class="tl-dot r"></span><span class="tl-dot y"></span><span class="tl-dot g"></span>
+      <span class="term-title-text">guest@xia-qi: ~</span>
+      <span class="term-esc">esc to close</span>
+    </div>
+    <div class="term-body" id="termBody"></div>
+    <div class="term-input-row">
+      <span class="term-prompt">guest@xia-qi:~$</span>
+      <input class="term-input" id="termInput" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="terminal input">
+    </div>
+  </div>
+</div>
+<canvas id="matrixCanvas"></canvas>
+<div class="toast" id="toast"></div>
+<script src="assets/script.js"></script>
+<script>
+  /* accordion */
+  (function(){
+    document.querySelectorAll('#vocalAccordion .accordion-header').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.accordion-item');
+        const nowOpen = item.classList.toggle('open');
+        btn.setAttribute('aria-expanded', nowOpen ? 'true' : 'false');
+        btn.querySelector('.accordion-icon').textContent = nowOpen ? '×' : '+';
+      });
+    });
+  })();
+
+  /* anime tracker */
+  (function(){
+    const root = document.getElementById('animeRoot');
+    const escapeHtml = (s) => {
+      const d = document.createElement('div');
+      d.textContent = s == null ? '' : String(s);
+      return d.innerHTML;
+    };
+    function simpleList(items){
+      if(!items || !items.length) return '<p class="repo-empty">nothing here yet</p>';
+      return '<ul class="anime-list">' + items.map(a =>
+        '<li class="anime-item"><p class="anime-title">' + escapeHtml(a.title) + '</p>' +
+        (a.note ? '<p class="anime-note">' + escapeHtml(a.note) + '</p>' : '') + '</li>'
+      ).join('') + '</ul>';
+    }
+    function bingingList(items){
+      if(!items || !items.length) return '<p class="repo-empty">nothing here yet</p>';
+      return '<ul class="anime-list">' + items.map(a =>
+        '<li class="anime-item"><p class="anime-title">' + escapeHtml(a.title) + '</p>' +
+        (a.note ? '<p class="anime-note">' + escapeHtml(a.note) + '</p>' : '') +
+        '<div class="progress-bar"><div class="progress-fill" style="width:' + (a.progress || 0) + '%;"></div></div>' +
+        '<div class="progress-label"><span>' + (a.progress || 0) + '%</span><span>binging</span></div>' +
+        '</li>'
+      ).join('') + '</ul>';
+    }
+    function render(data){
+      let html = '';
+      html += '<div class="status-section"><p class="status-section-title">On My Watchlist <span class="count">' + ((data.watchlist||[]).length) + '</span></p>' + simpleList(data.watchlist) + '</div>';
+      html += '<div class="status-section"><p class="status-section-title">Currently Binging <span class="count">' + ((data.binging||[]).length) + '</span></p>' + bingingList(data.binging) + '</div>';
+      html += '<div class="status-section"><p class="status-section-title">Completed <span class="count">' + ((data.completed||[]).length) + '</span></p>' + simpleList(data.completed) + '</div>';
+      root.innerHTML = html;
+    }
+    fetch('assets/anime.json')
+      .then(r => { if(!r.ok) throw new Error('missing'); return r.json(); })
+      .then(data => render(data || {}))
+      .catch(() => { root.innerHTML = '<p class="repo-empty">couldn\'t load anime.json — make sure it sits next to this page.</p>'; });
+  })();
+</script>
+</body>
+</html>

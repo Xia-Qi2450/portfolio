@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Xia Qi — Dev & Tinkerer</title>
+<meta name="description" content="Xia Qi — student building things in Python, the web, and hardware. Software on one track, soldering irons on the other.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0a0d10;
+    --panel: #11171d;
+    --panel-hi: #161d24;
+    --border: #1f2830;
+    --copper: #ff9d5c;
+    --copper-dim: #8a5636;
+    --cyan: #6ee7d8;
+    --cyan-dim: #3d7a72;
+    --ink: #eef3f5;
+    --ink-dim: #7c8a95;
+    --ink-faint: #4b5860;
+    --mono: 'JetBrains Mono', ui-monospace, monospace;
+    --sans: 'Inter', system-ui, sans-serif;
+  }
+
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior: auto; }
+    *{ animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+  }
+
+  body{
+    margin:0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    background-image:
+      radial-gradient(ellipse 900px 500px at 15% -10%, rgba(255,157,92,0.07), transparent 60%),
+      radial-gradient(ellipse 900px 600px at 100% 10%, rgba(110,231,216,0.06), transparent 55%);
+    background-attachment: fixed;
+  }
+
+  a{ color: inherit; }
+  ::selection{ background: var(--copper); color: #1a0f06; }
+
+  a:focus-visible, button:focus-visible, input:focus-visible{
+    outline: 2px solid var(--cyan);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  .wrap{ max-width: 880px; margin: 0 auto; padding: 0 24px; }
+
+  /* ---------- top bar ---------- */
+  .topbar{ position: sticky; top:0; z-index: 40; backdrop-filter: blur(10px); background: rgba(10,13,16,0.72); border-bottom: 1px solid var(--border); }
+  .topbar-inner{ max-width: 880px; margin: 0 auto; padding: 14px 24px; display:flex; align-items:center; justify-content: space-between; }
+  .mark{ font-family: var(--mono); font-weight:700; font-size: 14px; letter-spacing: 0.06em; color: var(--ink); display:flex; align-items:center; gap:8px; text-decoration:none; background:none; border:none; cursor:default; padding:0; }
+  .mark .dot{ width:7px; height:7px; border-radius:50%; background: var(--copper); box-shadow: 0 0 8px var(--copper); animation: pulse 2.4s ease-in-out infinite; }
+  @keyframes pulse{ 0%,100%{ opacity:1; } 50%{ opacity:0.35; } }
+  .topnav{ display:flex; gap: 20px; font-family: var(--mono); font-size: 12px; align-items:center; }
+  .topnav a{ text-decoration:none; color: var(--ink-dim); letter-spacing: 0.04em; transition: color .15s; }
+  .topnav a:hover{ color: var(--cyan); }
+  .topnav .term-hint{ color: var(--ink-faint); border: 1px solid var(--border); padding: 3px 8px; border-radius: 4px; font-size:11px; }
+  @media (max-width: 660px){ .topnav a:not(.term-hint){ display:none; } }
+
+  /* ---------- hero ---------- */
+  .hero{ position: relative; padding: 76px 0 56px; overflow: hidden; }
+  .hero::before{ content:""; position:absolute; inset:0; background: repeating-linear-gradient(180deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 1px, transparent 1px, transparent 3px); pointer-events:none; }
+  .hero-inner{ position:relative; display:flex; gap: 32px; align-items:flex-start; flex-wrap: wrap; }
+  .avatar{ width: 84px; height:84px; border-radius: 10px; border: 1px solid var(--border); box-shadow: 0 0 0 4px var(--panel), 0 0 24px rgba(255,157,92,0.12); flex-shrink:0; transition: transform .3s ease; cursor:pointer; }
+  .hero-text{ flex:1; min-width: 260px; }
+  .prompt{ font-family: var(--mono); font-size: 13px; color: var(--cyan); margin: 0 0 10px; }
+  .prompt::before{ content: "> "; color: var(--ink-faint); }
+  .cursor{ display:inline-block; width:8px; height:16px; background: var(--copper); margin-left:2px; vertical-align: -2px; animation: blink 1s steps(1) infinite; }
+  @keyframes blink{ 50%{ opacity:0; } }
+
+  h1{ font-family: var(--mono); font-weight: 800; font-size: clamp(30px, 5vw, 44px); margin: 0 0 6px; letter-spacing: -0.01em; }
+  .role{ font-family: var(--mono); font-size: 14px; color: var(--ink-dim); margin: 0 0 12px; }
+  .role .sep{ color: var(--ink-faint); margin: 0 8px; }
+  .role .sw{ color: var(--cyan); }
+  .role .hw{ color: var(--copper); }
+
+  .status-line{ font-family: var(--mono); font-size: 12px; color: var(--ink-faint); margin: 0 0 20px; display:flex; align-items:center; gap:7px; }
+  .status-dot{ width:6px; height:6px; border-radius:50%; background: var(--cyan); box-shadow: 0 0 6px var(--cyan); flex-shrink:0; }
+
+  .bio{ max-width: 56ch; color: var(--ink); font-size: 15.5px; margin: 0 0 26px; }
+
+  .cta-row{ display:flex; gap:12px; flex-wrap: wrap; }
+  .btn{ display:inline-flex; align-items:center; gap:8px; font-family: var(--mono); font-size: 13px; font-weight:500; padding: 10px 16px; border-radius: 6px; text-decoration:none; border: 1px solid var(--border); transition: border-color .15s, transform .15s, background .15s; }
+  .btn-primary{ background: var(--panel-hi); color: var(--ink); }
+  .btn-primary:hover{ border-color: var(--copper); transform: translateY(-1px); }
+  .btn-ghost{ color: var(--ink-dim); background: transparent; cursor:pointer; }
+  .btn-ghost:hover{ border-color: var(--cyan); color: var(--cyan); }
+
+  /* ---------- board / trace line ---------- */
+  .board{ position: relative; padding: 10px 0 40px; }
+  .board-line{ position:absolute; left: 23px; top: 6px; bottom: 6px; width: 2px; background: linear-gradient(180deg, var(--copper) 0%, var(--copper-dim) 20%, var(--cyan-dim) 80%, var(--cyan) 100%); opacity: 0.55; }
+  .node{ display:flex; gap: 0; position: relative; padding: 46px 0; border-top: 1px solid var(--border); }
+  .node:first-child{ border-top: none; padding-top: 8px; }
+  .node-marker{ width: 48px; flex-shrink:0; display:flex; flex-direction:column; align-items:center; position:relative; z-index:2; }
+  .pad{ width: 12px; height:12px; border-radius:50%; background: var(--bg); border: 2px solid var(--copper); margin-top: 4px; box-shadow: 0 0 10px rgba(255,157,92,0.35); }
+  .node[data-track="cyan"] .pad{ border-color: var(--cyan); box-shadow: 0 0 10px rgba(110,231,216,0.35); }
+  .idx{ font-family: var(--mono); font-size: 11px; color: var(--ink-faint); writing-mode: vertical-rl; margin-top: 12px; letter-spacing: 0.1em; }
+  .node-content{ flex:1; min-width:0; padding-left: 20px; }
+  .eyebrow{ font-family: var(--mono); font-size: 12px; letter-spacing: 0.12em; color: var(--ink-faint); text-transform: uppercase; margin: 0 0 6px; }
+  .node h2{ font-family: var(--mono); font-size: 20px; margin: 0 0 8px; }
+  .node-sub{ font-size: 13.5px; color: var(--ink-dim); margin: 0 0 18px; max-width: 52ch; }
+
+  .node{ opacity: 0; transform: translateY(14px); transition: opacity .5s ease, transform .5s ease; }
+  .node.in{ opacity:1; transform: none; }
+
+  /* ---------- stack ---------- */
+  .tracks{ display:grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 620px){ .tracks{ grid-template-columns: 1fr; } }
+  .track{ border: 1px solid var(--border); border-radius: 8px; padding: 16px 18px; background: var(--panel); }
+  .track-sw{ border-top: 2px solid var(--cyan); }
+  .track-hw{ border-top: 2px solid var(--copper); }
+  .track-title{ font-family: var(--mono); font-size: 12px; letter-spacing:0.08em; margin: 0 0 4px; }
+  .track-sw .track-title{ color: var(--cyan); }
+  .track-hw .track-title{ color: var(--copper); }
+  .track-desc{ font-size: 12.5px; color: var(--ink-dim); margin: 0 0 12px; }
+  .chips{ display:flex; flex-wrap:wrap; gap: 8px; }
+  .chip{ font-family: var(--mono); font-size: 12.5px; color: var(--ink); background: var(--panel-hi); border: 1px solid var(--border); padding: 5px 10px; border-radius: 5px; }
+  .chip.learning{ color: var(--ink-dim); border-style: dashed; }
+
+  /* ---------- projects ---------- */
+  .repo-grid{ display:grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media (max-width: 620px){ .repo-grid{ grid-template-columns: 1fr; } }
+  .repo{ position:relative; display:block; text-decoration:none; color: var(--ink); border: 1px solid var(--border); border-radius: 8px; padding: 16px; background: var(--panel); transition: border-color .15s, transform .15s, background .15s; }
+  .repo:hover, .repo:focus-visible{ border-color: var(--copper); transform: translateY(-2px); background: var(--panel-hi); }
+  .repo-name{ font-family: var(--mono); font-size: 14px; font-weight: 600; margin: 0 0 6px; display:flex; align-items:center; justify-content: space-between; gap:8px; }
+  .lang{ font-family: var(--mono); font-size: 10.5px; color: var(--ink-faint); border: 1px solid var(--border); padding: 2px 7px; border-radius: 4px; white-space:nowrap; }
+  .repo-desc{ font-size: 13.5px; color: var(--ink-dim); margin:0 0 6px; }
+  .featured-badge{ position:absolute; top:-9px; right:12px; font-family: var(--mono); font-size: 10px; letter-spacing:0.05em; background: var(--copper); color:#1a0f06; padding: 2px 8px; border-radius: 4px; font-weight:700; }
+  .egg-line{ font-family: var(--mono); font-size: 11.5px; color: var(--cyan); max-height:0; opacity:0; overflow:hidden; transition: max-height .25s ease, opacity .25s ease; margin:0; }
+  .repo:hover .egg-line, .repo:focus-visible .egg-line{ max-height: 20px; opacity:1; margin-top:4px; }
+
+  /* ---------- off duty ---------- */
+  .duty-grid{ display:grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; }
+  .duty-card{ border:1px solid var(--border); background: var(--panel); border-radius: 8px; padding: 16px; }
+  .duty-label{ font-family: var(--mono); font-size: 11px; color: var(--ink-faint); letter-spacing:0.08em; margin:0 0 8px; }
+  .duty-val{ font-size: 14px; margin:0; }
+  .eq{ display:flex; align-items:flex-end; gap:3px; height: 16px; margin-top:10px; }
+  .eq span{ width:3px; border-radius:1px; animation: eq 900ms ease-in-out infinite; }
+  .eq.copper span{ background: var(--copper); }
+  .eq.cyan span{ background: var(--cyan); }
+  .eq span:nth-child(1){ height:40%; animation-delay: 0ms; }
+  .eq span:nth-child(2){ height:100%; animation-delay: 120ms; }
+  .eq span:nth-child(3){ height:60%; animation-delay: 240ms; }
+  .eq span:nth-child(4){ height:85%; animation-delay: 360ms; }
+  .eq span:nth-child(5){ height:50%; animation-delay: 480ms; }
+  @keyframes eq{ 0%,100%{ transform: scaleY(0.5); } 50%{ transform: scaleY(1); } }
+
+  /* ---------- music player ---------- */
+  .player{ border:1px solid var(--border); background:var(--panel); border-radius:10px; padding:18px; }
+  .player-now{ display:flex; align-items:center; gap:14px; margin-bottom:16px; }
+  .player-art{ width:56px; height:56px; border-radius:8px; background:var(--panel-hi); border:1px solid var(--border); display:flex; align-items:center; justify-content:center; flex-shrink:0; overflow:hidden; font-size:20px; }
+  .player-art img{ width:100%; height:100%; object-fit:cover; }
+  .player-meta{ min-width:0; }
+  .player-title{ font-family:var(--mono); font-size:14px; margin:0 0 4px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .player-artist{ font-size:12.5px; color:var(--ink-dim); margin:0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .player-progress{ display:flex; align-items:center; gap:10px; margin-bottom:14px; }
+  .p-time{ font-family:var(--mono); font-size:11px; color:var(--ink-faint); width:34px; flex-shrink:0; }
+  .p-time.end{ text-align:right; }
+  input[type=range]{ -webkit-appearance:none; appearance:none; width:100%; height:4px; background:var(--border); border-radius:2px; outline:none; }
+  input[type=range]::-webkit-slider-thumb{ -webkit-appearance:none; width:12px; height:12px; border-radius:50%; background:var(--cyan); cursor:pointer; box-shadow:0 0 6px rgba(110,231,216,0.5); }
+  input[type=range]::-moz-range-thumb{ width:12px; height:12px; border-radius:50%; background:var(--cyan); border:none; cursor:pointer; }
+  .player-controls{ display:flex; align-items:center; gap:12px; margin-bottom:14px; }
+  .pctrl{ background:var(--panel-hi); border:1px solid var(--border); color:var(--ink); width:36px; height:36px; border-radius:50%; cursor:pointer; font-size:14px; display:flex; align-items:center; justify-content:center; transition:border-color .15s; }
+  .pctrl:hover{ border-color:var(--cyan); }
+  .pctrl.main{ width:42px; height:42px; background:var(--cyan); color:#06231f; border:none; font-size:15px; }
+  .vol{ width:80px; margin-left:auto; }
+  .track-list{ list-style:none; margin:0; padding:0; border-top:1px solid var(--border); max-height:220px; overflow-y:auto; }
+  .track-item{ display:flex; align-items:center; justify-content:space-between; gap:10px; padding:9px 4px; font-size:13px; cursor:pointer; border-bottom:1px solid var(--border); transition:color .15s; }
+  .track-item:hover{ color:var(--cyan); }
+  .track-item.playing{ color:var(--cyan); }
+  .track-item .t-name{ overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .track-item .t-artist{ color:var(--ink-faint); font-size:11.5px; flex-shrink:0; }
+  .track-empty{ padding:14px 4px; color:var(--ink-faint); font-family:var(--mono); font-size:12.5px; text-align:center; }
+
+  /* ---------- connect ---------- */
+  .connect-row{ display:flex; gap: 14px; flex-wrap: wrap; }
+  .connect-card{ flex:1; min-width: 220px; border:1px solid var(--border); background: var(--panel); border-radius: 8px; padding: 16px; display:flex; align-items:center; justify-content: space-between; gap: 10px; }
+  .connect-k{ font-family: var(--mono); font-size: 11px; color: var(--ink-faint); letter-spacing: 0.08em; display:block; margin-bottom:4px; }
+  .connect-v{ font-family: var(--mono); font-size: 14px; }
+  .copy-btn{ font-family: var(--mono); font-size: 11px; color: var(--ink-dim); background: transparent; border: 1px solid var(--border); border-radius: 5px; padding: 6px 10px; cursor:pointer; transition: all .15s; }
+  .copy-btn:hover{ border-color: var(--cyan); color: var(--cyan); }
+
+  footer{ text-align:center; padding: 34px 0 50px; }
+  footer p{ font-family: var(--mono); font-size: 11.5px; color: var(--ink-faint); margin:0 0 6px; }
+  footer .hint{ opacity:0.6; }
+
+  /* ---------- terminal ---------- */
+  .term-overlay{ position: fixed; inset:0; z-index: 200; display:none; align-items:center; justify-content:center; background: rgba(4,5,7,0.78); backdrop-filter: blur(4px); padding: 20px; }
+  .term-overlay.open{ display:flex; }
+  .term-window{ width: min(680px, 100%); height: min(480px, 82vh); background: #0d1114; border: 1px solid var(--border); border-radius: 10px; overflow:hidden; display:flex; flex-direction:column; box-shadow: 0 24px 70px rgba(0,0,0,0.65), 0 0 0 1px rgba(110,231,216,0.05); }
+  .term-titlebar{ display:flex; align-items:center; gap:8px; padding: 10px 14px; background: var(--panel-hi); border-bottom: 1px solid var(--border); flex-shrink:0; }
+  .tl-dot{ width:10px; height:10px; border-radius:50%; }
+  .tl-dot.r{ background:#ff5f56; } .tl-dot.y{ background:#ffbd2e; } .tl-dot.g{ background:#27c93f; }
+  .term-title-text{ flex:1; text-align:center; font-family: var(--mono); font-size: 12px; color: var(--ink-dim); }
+  .term-esc{ font-family: var(--mono); font-size: 10.5px; color: var(--ink-faint); }
+  .term-body{ flex:1; overflow-y:auto; padding: 14px 16px; font-family: var(--mono); font-size: 13px; line-height:1.65; color: var(--ink); }
+  .term-body .line{ white-space: pre-wrap; word-break: break-word; margin: 0 0 2px; }
+  .term-body .in-line{ color: var(--cyan); }
+  .term-body .err{ color: var(--copper); }
+  .term-body .dim{ color: var(--ink-dim); }
+  .term-body .ok{ color: var(--cyan); }
+  .term-input-row{ display:flex; align-items:center; gap:8px; padding: 10px 16px; border-top: 1px solid var(--border); background: var(--panel); flex-shrink:0; }
+  .term-prompt{ font-family: var(--mono); font-size: 13px; color: var(--cyan); white-space:nowrap; }
+  .term-input{ flex:1; background: transparent; border:none; outline:none; color: var(--ink); font-family: var(--mono); font-size: 13px; caret-color: var(--copper); }
+
+  #matrixCanvas{ position: fixed; inset:0; z-index: 90; display:none; pointer-events:none; }
+  #matrixCanvas.on{ display:block; }
+
+  .toast{ position: fixed; bottom: 26px; left:50%; transform: translateX(-50%) translateY(20px); background: var(--panel-hi); border:1px solid var(--border); color: var(--ink); font-family: var(--mono); font-size: 12.5px; padding: 10px 18px; border-radius: 8px; z-index: 300; opacity:0; transition: opacity .25s ease, transform .25s ease; pointer-events:none; box-shadow: 0 10px 30px rgba(0,0,0,0.4); }
+  .toast.show{ opacity:1; transform: translateX(-50%) translateY(0); }
+
+  .confetti-piece{ position:fixed; top:-24px; font-size:18px; z-index:150; pointer-events:none; animation: fall linear forwards; }
+  @keyframes fall{ to{ transform: translateY(105vh) rotate(360deg); opacity: 0.8; } }
+</style>
+</head>
+<body>
+<!--
+  hey, nice of you to check the source.
+  there's a hidden terminal on this page — try pressing `
+  (and yes, a few of the terminal commands are jokes. try the obvious dangerous one.)
+-->
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <span class="mark"><span class="dot"></span>XIA_QI</span>
+    <nav class="topnav">
+      <a href="#stack">stack</a>
+      <a href="#builds">builds</a>
+      <a href="#off-duty">off-duty</a>
+      <a href="#music">music</a>
+      <a href="#connect">connect</a>
+      <span class="term-hint" title="try pressing the backtick key">`</span>
+    </nav>
+  </div>
+</div>
+
+<header class="hero" id="top">
+  <div class="wrap hero-inner">
+    <img class="avatar" id="avatarImg" src="https://avatars.githubusercontent.com/u/196024955?v=4" alt="Xia Qi's GitHub avatar" width="84" height="84" loading="lazy">
+    <div class="hero-text">
+      <p class="prompt">whoami<span class="cursor" aria-hidden="true"></span></p>
+      <h1>Xia Qi</h1>
+      <p class="role"><span class="sw">Frontend + Backend</span><span class="sep">/</span><span class="hw">Maker</span></p>
+      <p class="status-line"><span class="status-dot"></span>status: probably deep in a rabbit hole right now</p>
+      <p class="bio">I'm Xia Qi, a student who spends way too much time writing Python, designing websites, and coming up with project ideas that somehow keep getting bigger.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="https://github.com/Xia-Qi2450" target="_blank" rel="noopener">View GitHub ↗</a>
+        <button class="btn btn-ghost" id="copyDiscord" type="button">Copy Discord: dw_aelious</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="board">
+    <div class="board-line" aria-hidden="true"></div>
+
+    <section class="node" id="stack" data-track="copper">
+      <div class="node-marker"><span class="pad"></span><span class="idx">01</span></div>
+      <div class="node-content">
+        <p class="eyebrow">Stack</p>
+        <h2>Two tracks, one workbench</h2>
+        <p class="node-sub">Software on one side, soldering irons on the other. Most projects end up touching both.</p>
+        <div class="tracks">
+          <div class="track track-sw">
+            <p class="track-title">SOFTWARE</p>
+            <p class="track-desc">Scripts, sites, and the occasional game system.</p>
+            <div class="chips">
+              <span class="chip">Python</span>
+              <span class="chip">HTML</span>
+              <span class="chip">CSS</span>
+              <span class="chip">JavaScript</span>
+              <span class="chip">Luau</span>
+              <span class="chip learning">+ always learning</span>
+            </div>
+          </div>
+          <div class="track track-hw">
+            <p class="track-title">HARDWARE &amp; MAKING</p>
+            <p class="track-desc">If it has a plug, a filament spool, or a mod loader, it's fair game.</p>
+            <div class="chips">
+              <span class="chip">Arduino</span>
+              <span class="chip">3D Printing</span>
+              <span class="chip">PC Building</span>
+              <span class="chip">Minecraft Modding</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="node" id="builds" data-track="cyan">
+      <div class="node-marker"><span class="pad"></span><span class="idx">02</span></div>
+      <div class="node-content">
+        <p class="eyebrow">Builds</p>
+        <h2>Pinned on GitHub</h2>
+        <p class="node-sub">Live-pulled from <a href="https://github.com/Xia-Qi2450" target="_blank" rel="noopener" style="color:var(--cyan);">github.com/Xia-Qi2450</a>. Hover a card, there might be more than meets the eye. Also — try wandering to a page that doesn't exist.</p>
+        <div class="repo-grid">
+          <a class="repo" href="https://github.com/Xia-Qi2450/dogcheck" target="_blank" rel="noopener">
+            <span class="featured-badge">favorite</span>
+            <p class="repo-name">dogcheck <span class="lang">HTML</span></p>
+            <p class="repo-desc">A web recreation of the DOGCHECK screen from Toby Fox's games, with room to customise it.</p>
+            <p class="egg-line">🐾 dogcheck: passed.</p>
+          </a>
+          <a class="repo" href="https://github.com/Xia-Qi2450/robo-queue" target="_blank" rel="noopener">
+            <p class="repo-name">robo-queue <span class="lang">Python</span></p>
+            <p class="repo-desc">A small Python program built to help with robotics competition prep.</p>
+            <p class="egg-line">⚙ queue: 1 item. beep.</p>
+          </a>
+          <a class="repo" href="https://github.com/Xia-Qi2450/SCP_Data" target="_blank" rel="noopener">
+            <p class="repo-name">SCP_Data <span class="lang">Python</span></p>
+            <p class="repo-desc">A terminal UI that pulls and displays articles straight from the official SCP Wiki.</p>
+            <p class="egg-line">containment: nominal.</p>
+          </a>
+          <a class="repo" href="https://github.com/Xia-Qi2450/ttsScript" target="_blank" rel="noopener">
+            <p class="repo-name">ttsScript <span class="lang">Python</span></p>
+            <p class="repo-desc">A friendly text-to-speech script built on pyttsx3.</p>
+            <p class="egg-line">"hello, world." — the script, probably</p>
+          </a>
+          <a class="repo" href="https://github.com/Xia-Qi2450/animeClassPython" target="_blank" rel="noopener">
+            <p class="repo-name">animeClassPython <span class="lang">Python</span></p>
+            <p class="repo-desc">Ran out of project ideas mid-way through this one. Probably easier to just go read the code.</p>
+            <p class="egg-line">idea generator: offline.</p>
+          </a>
+          <a class="repo" href="https://github.com/Xia-Qi2450/EulerProjectAttempts" target="_blank" rel="noopener">
+            <p class="repo-name">EulerProjectAttempts <span class="lang">Python</span></p>
+            <p class="repo-desc">Ongoing attempts at the Project Euler archive of problems.</p>
+            <p class="egg-line">brute force: engaged.</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="node" id="off-duty" data-track="cyan">
+      <div class="node-marker"><span class="pad"></span><span class="idx">03</span></div>
+      <div class="node-content">
+        <p class="eyebrow">Off duty</p>
+        <h2>When the IDE's closed</h2>
+        <p class="node-sub">Usually one of these, sometimes all three at once.</p>
+        <div class="duty-grid">
+          <div class="duty-card">
+            <p class="duty-label">GAMING</p>
+            <p class="duty-val">Always mid-way through something new</p>
+          </div>
+          <div class="duty-card">
+            <p class="duty-label">ANIME</p>
+            <p class="duty-val">Working through the watchlist</p>
+          </div>
+          <div class="duty-card">
+            <p class="duty-label">VOCAL SYNTH</p>
+            <p class="duty-val">Hatsune Miku &amp; Kasane Teto</p>
+            <div class="eq cyan" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
+          </div>
+          <div class="duty-card">
+            <p class="duty-label">ON REPEAT</p>
+            <p class="duty-val">DELTARUNE &amp; ULTRAKILL OSTs</p>
+            <div class="eq copper" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="node" id="music" data-track="cyan">
+      <div class="node-marker"><span class="pad"></span><span class="idx">04</span></div>
+      <div class="node-content">
+        <p class="eyebrow">Now Playing</p>
+        <h2>The actual playlist</h2>
+        <p class="node-sub">Reads from <code>music/tracks.json</code>. Empty until real files land in <code>/music/</code>.</p>
+        <div class="player" id="playerBox">
+          <div class="player-now">
+            <div class="player-art" id="playerArt">🎵</div>
+            <div class="player-meta">
+              <p class="player-title" id="playerTitle">No track loaded</p>
+              <p class="player-artist" id="playerArtist">add music/tracks.json to get started</p>
+            </div>
+          </div>
+          <div class="player-progress">
+            <span class="p-time" id="curTime">0:00</span>
+            <input type="range" id="seek" min="0" max="100" value="0" aria-label="seek">
+            <span class="p-time end" id="durTime">0:00</span>
+          </div>
+          <div class="player-controls">
+            <button class="pctrl" id="prevBtn" type="button" aria-label="previous track">⏮</button>
+            <button class="pctrl main" id="playBtn" type="button" aria-label="play">▶</button>
+            <button class="pctrl" id="nextBtn" type="button" aria-label="next track">⏭</button>
+            <input type="range" class="vol" id="volume" min="0" max="1" step="0.01" value="0.7" aria-label="volume">
+          </div>
+          <ul class="track-list" id="trackList"></ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="node" id="connect" data-track="copper">
+      <div class="node-marker"><span class="pad"></span><span class="idx">05</span></div>
+      <div class="node-content">
+        <p class="eyebrow">Connect</p>
+        <h2>Say hi</h2>
+        <div class="connect-row">
+          <div class="connect-card">
+            <div><span class="connect-k">GITHUB</span><span class="connect-v">Xia-Qi2450</span></div>
+            <a class="btn btn-ghost" style="padding:6px 10px;" href="https://github.com/Xia-Qi2450" target="_blank" rel="noopener">Visit ↗</a>
+          </div>
+          <div class="connect-card">
+            <div><span class="connect-k">DISCORD</span><span class="connect-v">dw_aelious</span></div>
+            <button class="copy-btn" id="copyDiscord2" type="button">Copy</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer>
+  <p>Built with a soldering iron in one hand and a keyboard in the other.</p>
+  <p class="hint">// there's more here than a scroll can find. try `</p>
+</footer>
+
+<!-- secret terminal -->
+<div class="term-overlay" id="termOverlay" role="dialog" aria-modal="true" aria-label="Secret terminal">
+  <div class="term-window">
+    <div class="term-titlebar">
+      <span class="tl-dot r"></span><span class="tl-dot y"></span><span class="tl-dot g"></span>
+      <span class="term-title-text">guest@xia-qi: ~</span>
+      <span class="term-esc">esc to close</span>
+    </div>
+    <div class="term-body" id="termBody"></div>
+    <div class="term-input-row">
+      <span class="term-prompt">guest@xia-qi:~$</span>
+      <input class="term-input" id="termInput" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="terminal input">
+    </div>
+  </div>
+</div>
+<canvas id="matrixCanvas"></canvas>
+<div class="toast" id="toast"></div>
+
+<script>
+  /* ---- reveal on scroll ---- */
+  const nodes = document.querySelectorAll('.node');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.15 });
+  nodes.forEach(n => io.observe(n));
+
+  /* ---- copy discord ---- */
+  function copyDiscord(){
+    navigator.clipboard.writeText('dw_aelious').then(() => {
+      document.querySelectorAll('#copyDiscord, #copyDiscord2').forEach(btn => {
+        const original = btn.textContent;
+        btn.textContent = 'Copied!';
+        setTimeout(() => { btn.textContent = original; }, 1600);
+      });
+    }).catch(() => {});
+  }
+  document.getElementById('copyDiscord').addEventListener('click', copyDiscord);
+  document.getElementById('copyDiscord2').addEventListener('click', copyDiscord);
+
+  /* ---- toast ---- */
+  const toastEl = document.getElementById('toast');
+  let toastTimer = null;
+  function showToast(msg, ms){
+    toastEl.textContent = msg;
+    toastEl.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toastEl.classList.remove('show'), ms || 2600);
+  }
+
+  /* ---- tab title easter egg ---- */
+  const baseTitle = document.title;
+  window.addEventListener('blur', () => { document.title = 'come back! 🎧'; });
+  window.addEventListener('focus', () => { document.title = baseTitle; });
+
+  /* ---- console art easter egg ---- */
+  console.log('%cXIA_QI', 'font-family:monospace;font-size:22px;font-weight:800;color:#ff9d5c;');
+  console.log('%cnice of you to check devtools. try pressing ` on the page for something extra.', 'font-family:monospace;font-size:12px;color:#6ee7d8;');
+
+  /* ---- avatar click easter egg ---- */
+  let avatarClicks = 0;
+  document.getElementById('avatarImg').addEventListener('click', () => {
+    avatarClicks++;
+    document.getElementById('avatarImg').style.transform = 'rotate(' + (avatarClicks * 72) + 'deg)';
+    if(avatarClicks === 5){
+      showToast('🌀 okay, you really like clicking. hi.');
+      avatarClicks = 0;
+    }
+  });
+
+  /* ================= MUSIC PLAYER ================= */
+  const audio = new Audio();
+  audio.volume = 0.7;
+  let tracks = [];
+  let currentIndex = -1;
+  let isPlaying = false;
+
+  const playerTitle = document.getElementById('playerTitle');
+  const playerArtist = document.getElementById('playerArtist');
+  const playerArt = document.getElementById('playerArt');
+  const playBtn = document.getElementById('playBtn');
+  const seekEl = document.getElementById('seek');
+  const curTimeEl = document.getElementById('curTime');
+  const durTimeEl = document.getElementById('durTime');
+  const trackListEl = document.getElementById('trackList');
+  const volumeEl = document.getElementById('volume');
+
+  function formatTime(s){
+    if(!isFinite(s) || s == null) return '0:00';
+    const m = Math.floor(s / 60), sec = Math.floor(s % 60);
+    return m + ':' + String(sec).padStart(2, '0');
+  }
+  function escapeHtml(s){
+    const d = document.createElement('div');
+    d.textContent = s == null ? '' : String(s);
+    return d.innerHTML;
+  }
+
+  async function loadTracks(){
+    try{
+      const res = await fetch('music/tracks.json');
+      if(!res.ok) throw new Error('missing');
+      const data = await res.json();
+      if(!Array.isArray(data) || !data.length) throw new Error('empty');
+      tracks = data;
+      renderTrackList();
+    } catch(err){
+      trackListEl.innerHTML = '<li class="track-empty">no tracks yet — drop files in /music/ with a tracks.json</li>';
+    }
+  }
+
+  function renderTrackList(){
+    trackListEl.innerHTML = '';
+    tracks.forEach((t, i) => {
+      const li = document.createElement('li');
+      li.className = 'track-item' + (i === currentIndex ? ' playing' : '');
+      li.innerHTML = '<span class="t-name">' + escapeHtml(t.title || t.file) + '</span><span class="t-artist">' + escapeHtml(t.artist || '') + '</span>';
+      li.addEventListener('click', () => selectTrack(i, true));
+      trackListEl.appendChild(li);
+    });
+  }
+
+  function selectTrack(i, autoplay){
+    if(!tracks[i]) return;
+    currentIndex = i;
+    const t = tracks[i];
+    audio.src = t.file;
+    playerTitle.textContent = t.title || t.file;
+    playerArtist.textContent = t.artist || '';
+    playerArt.innerHTML = t.cover ? '<img src="' + t.cover + '" alt="">' : '🎵';
+    renderTrackList();
+    if(autoplay){
+      audio.play().then(() => { isPlaying = true; playBtn.textContent = '⏸'; }).catch(() => {});
+    }
+  }
+
+  function togglePlay(){
+    if(currentIndex === -1){ if(tracks.length){ selectTrack(0, true); } return; }
+    if(isPlaying){ audio.pause(); isPlaying = false; playBtn.textContent = '▶'; }
+    else { audio.play().then(() => { isPlaying = true; playBtn.textContent = '⏸'; }).catch(() => {}); }
+  }
+  function nextTrack(){ if(!tracks.length) return; selectTrack((currentIndex + 1) % tracks.length, true); }
+  function prevTrack(){ if(!tracks.length) return; selectTrack((currentIndex - 1 + tracks.length) % tracks.length, true); }
+
+  playBtn.addEventListener('click', togglePlay);
+  document.getElementById('nextBtn').addEventListener('click', nextTrack);
+  document.getElementById('prevBtn').addEventListener('click', prevTrack);
+  volumeEl.addEventListener('input', () => { audio.volume = parseFloat(volumeEl.value); });
+  seekEl.addEventListener('input', () => { if(audio.duration){ audio.currentTime = (seekEl.value / 100) * audio.duration; } });
+  audio.addEventListener('timeupdate', () => {
+    if(audio.duration){ seekEl.value = (audio.currentTime / audio.duration) * 100; curTimeEl.textContent = formatTime(audio.currentTime); }
+  });
+  audio.addEventListener('loadedmetadata', () => { durTimeEl.textContent = formatTime(audio.duration); });
+  audio.addEventListener('ended', nextTrack);
+  audio.addEventListener('pause', () => { isPlaying = false; playBtn.textContent = '▶'; });
+  audio.addEventListener('play', () => { isPlaying = true; playBtn.textContent = '⏸'; });
+
+  loadTracks();
+
+  function playByQuery(query){
+    const q = query.toLowerCase();
+    const idx = tracks.findIndex(t => (t.title || '').toLowerCase().includes(q) || (t.artist || '').toLowerCase().includes(q));
+    if(idx !== -1){
+      selectTrack(idx, true);
+      document.getElementById('playerBox').scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return tracks[idx];
+    }
+    return null;
+  }
+
+  /* ================= SECRET TERMINAL ================= */
+  const fileSystem = {
+    'about.txt': "I'm Xia Qi, a student who spends way too much time writing Python, designing websites, and coming up with project ideas that somehow keep getting bigger.",
+    'skills.txt': "software: Python, HTML, CSS, JavaScript, Luau\nhardware: Arduino, 3D Printing, PC Building, Minecraft Modding",
+    'music.playlist': "now spinning:\n- Hatsune Miku (various)\n- Kasane Teto (various)\n- DELTARUNE OST\n- ULTRAKILL OST",
+    'contact.txt': "github: github.com/Xia-Qi2450\ndiscord: dw_aelious",
+  };
+  const hiddenFiles = {
+    'secret.txt': "you found the hidden file. 🐾\nfun fact: the 'dogcheck' repo exists purely because of a Toby Fox bit. no regrets."
+  };
+  const repoList = [
+    ['dogcheck', 'DELTARUNE dogcheck screen, on the web', 'github.com/Xia-Qi2450/dogcheck'],
+    ['robo-queue', 'robotics competition prep helper', 'github.com/Xia-Qi2450/robo-queue'],
+    ['SCP_Data', 'TUI reader for the SCP Wiki', 'github.com/Xia-Qi2450/SCP_Data'],
+    ['ttsScript', 'text-to-speech via pyttsx3', 'github.com/Xia-Qi2450/ttsScript'],
+    ['animeClassPython', 'ran out of ideas, ended up here', 'github.com/Xia-Qi2450/animeClassPython'],
+    ['EulerProjectAttempts', 'Project Euler archive attempts', 'github.com/Xia-Qi2450/EulerProjectAttempts'],
+  ];
+
+  const termOverlay = document.getElementById('termOverlay');
+  const termBody = document.getElementById('termBody');
+  const termInput = document.getElementById('termInput');
+  let termOpened = false;
+  let cmdHistory = [];
+  let histPos = -1;
+  let matrixOn = false;
+
+  function tprint(text, cls){
+    const div = document.createElement('div');
+    div.className = 'line' + (cls ? ' ' + cls : '');
+    div.textContent = text;
+    termBody.appendChild(div);
+    termBody.scrollTop = termBody.scrollHeight;
+  }
+  function tprintMulti(text, cls){ text.split('\n').forEach(l => tprint(l, cls)); }
+  function tprintDelayed(lines, delayEach){
+    lines.forEach((l, i) => setTimeout(() => tprint(l.text, l.cls), i * delayEach));
+  }
+
+  function welcomeBanner(){
+    tprint("xia-qi terminal — type 'help' to see what's here.", 'dim');
+    tprint('');
+  }
+
+  function openTerm(){
+    termOverlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    if(!termOpened){ welcomeBanner(); termOpened = true; }
+    termInput.value = '';
+    termInput.focus();
+    termBody.scrollTop = termBody.scrollHeight;
+  }
+  function closeTerm(){
+    termOverlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function runRmJoke(){
+    tprintDelayed([
+      { text: 'this had better be a joke...', cls: 'dim' },
+      { text: 'deleting /home/xia...', cls: 'dim' },
+      { text: 'deleting /etc/dog...', cls: 'dim' },
+      { text: 'deleting the concept of bugs...', cls: 'dim' },
+      { text: "wait, that's not how any of this works.", cls: 'dim' },
+      { text: "jk — this is a static site. there's nothing to rm. 🐾", cls: 'ok' },
+    ], 420);
+  }
+
+  function runCommand(raw){
+    const trimmed = raw.trim();
+    if(trimmed.length){ cmdHistory.push(trimmed); }
+    histPos = cmdHistory.length;
+    tprint('guest@xia-qi:~$ ' + raw, 'in-line');
+    if(!trimmed.length) return;
+
+    if(trimmed.includes(':(){') || trimmed.includes(':|:&')){
+      tprint("nice try. this terminal doesn't have a shell to bomb.", 'err');
+      return;
+    }
+
+    const parts = trimmed.split(/\s+/);
+    const cmd = parts[0].toLowerCase();
+    const args = parts.slice(1);
+
+    switch(cmd){
+      case 'help':
+        tprintMulti(
+          "available commands:\n" +
+          "  help              show this list\n" +
+          "  whoami            about me\n" +
+          "  neofetch          system info, allegedly\n" +
+          "  ls [-a]           list files\n" +
+          "  cat <file>        read a file\n" +
+          "  projects          list pinned repos\n" +
+          "  contact           how to reach me\n" +
+          "  play <name>       play a track, or try miku / teto\n" +
+          "  matrix            uh oh\n" +
+          "  sudo <cmd>        try it\n" +
+          "  konami            you know what this does\n" +
+          "  clear             clear the screen\n" +
+          "  exit              close terminal\n" +
+          "  (a few commands aren't listed here. good luck.)"
+        );
+        break;
+      case 'whoami':
+        tprintMulti("xia_qi — student, frontend+backend dev, occasional hardware tinkerer.\nprobably debugging something right now.");
+        break;
+      case 'neofetch':
+        tprintMulti(
+          "xia@qi\n" +
+          "------\n" +
+          "OS: XiaOS (definitely just a portfolio site)\n" +
+          "Shell: zsh --fake\n" +
+          "Languages: Python, HTML/CSS/JS, Luau\n" +
+          "Hobbies: 3D printing, Arduino, PC building, Minecraft modding\n" +
+          "Now playing: Hatsune Miku / Kasane Teto\n" +
+          "Uptime: since forever, brain still compiling"
+        );
+        break;
+      case 'ls':
+        if(args[0] === '-a'){
+          tprint(Object.keys(fileSystem).join('  ') + '  ' + Object.keys(hiddenFiles).join('  '));
+          tprint('(found a hidden one, huh)', 'dim');
+        } else {
+          tprint(Object.keys(fileSystem).join('  '));
+        }
+        break;
+      case 'cat':
+        if(!args[0]){ tprint('usage: cat <file>', 'err'); break; }
+        if(fileSystem[args[0]]){ tprintMulti(fileSystem[args[0]]); }
+        else if(hiddenFiles[args[0]]){ tprintMulti(hiddenFiles[args[0]], 'ok'); }
+        else { tprint('cat: ' + args[0] + ': No such file or directory', 'err'); }
+        break;
+      case 'projects':
+        repoList.forEach(([name, desc, url]) => {
+          tprint(name.padEnd(22) + '— ' + desc);
+          tprint('  ' + url, 'dim');
+        });
+        break;
+      case 'contact':
+        tprintMulti(fileSystem['contact.txt']);
+        break;
+      case 'play': {
+        if(!args[0]){ tprint('usage: play <name>', 'err'); break; }
+        const found = playByQuery(args.join(' '));
+        if(found){
+          tprint('▸ now playing: ' + (found.title || found.file) + (found.artist ? ' — ' + found.artist : ''), 'ok');
+        } else if(args[0].toLowerCase() === 'miku'){
+          tprint('▸ now playing: Hatsune Miku — synth vocals engaged. 🟢 (add real tracks to music/tracks.json to actually hear something)', 'ok');
+        } else if(args[0].toLowerCase() === 'teto'){
+          tprint('▸ now playing: Kasane Teto — bread reserves: nominal. 🍞 (add real tracks to music/tracks.json to actually hear something)', 'ok');
+        } else {
+          tprint("can't find that track. try 'play miku', 'play teto', or add it to music/tracks.json.", 'err');
+        }
+        break;
+      }
+      case 'rm':
+        if(args.includes('-rf') && args.includes('/')){ runRmJoke(); }
+        else { tprint('rm: missing operand (also, there is nothing to delete here)', 'err'); }
+        break;
+      case 'sudo':
+        if(args.includes('rm') && args.includes('-rf') && args.includes('/')){ runRmJoke(); }
+        else if(args.join(' ').includes('make me a sandwich')){ tprint('sudo: okay fine. 🥪 (still not real food though)', 'ok'); }
+        else if(args[0] === 'su'){ tprint('sudo su: you are now root. (you were already root — it\'s a static site.)', 'dim'); }
+        else { tprint('sudo: permission denied. nice try though.', 'err'); }
+        break;
+      case 'sl':
+        tprint('choo choo! 🚂💨 (pretty sure you meant \'ls\')', 'dim');
+        break;
+      case 'vim':
+      case ':q':
+      case ':wq':
+        tprint("how do you exit vim? nobody actually knows. try 'exit' instead.", 'err');
+        break;
+      case 'hack':
+        tprint('access granted. jk — this is a portfolio site, not a heist movie. 🛰️', 'dim');
+        break;
+      case '42':
+        tprint('the answer to life, the universe, and everything.', 'ok');
+        break;
+      case 'konami':
+        triggerKonami();
+        break;
+      case 'echo':
+        tprint(args.join(' '));
+        break;
+      case 'date':
+        tprint(new Date().toString());
+        break;
+      case 'matrix':
+        toggleMatrix();
+        tprint(matrixOn ? 'wake up...' : 'back to reality.', 'dim');
+        break;
+      case 'clear':
+        termBody.innerHTML = '';
+        break;
+      case 'exit':
+        closeTerm();
+        break;
+      default:
+        tprint("command not found: " + cmd + " — type 'help' to see what's available.", 'err');
+    }
+  }
+
+  termInput.addEventListener('keydown', (e) => {
+    if(e.key === 'Enter'){
+      const val = termInput.value;
+      termInput.value = '';
+      runCommand(val);
+    } else if(e.key === 'ArrowUp'){
+      e.preventDefault();
+      if(cmdHistory.length){ histPos = Math.max(0, histPos - 1); termInput.value = cmdHistory[histPos] || ''; }
+    } else if(e.key === 'ArrowDown'){
+      e.preventDefault();
+      if(cmdHistory.length){ histPos = Math.min(cmdHistory.length, histPos + 1); termInput.value = cmdHistory[histPos] || ''; }
+    }
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if(e.key === 'Escape' && termOverlay.classList.contains('open')){ closeTerm(); return; }
+    if(e.key === '`' && !termOverlay.classList.contains('open')){ e.preventDefault(); openTerm(); }
+  });
+  termOverlay.addEventListener('mousedown', (e) => { if(e.target === termOverlay) closeTerm(); });
+
+  /* ---- matrix rain ---- */
+  const canvas = document.getElementById('matrixCanvas');
+  const ctx = canvas.getContext('2d');
+  let matrixInterval = null;
+  function toggleMatrix(){
+    matrixOn = !matrixOn;
+    if(matrixOn){
+      canvas.classList.add('on');
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      const fontSize = 15;
+      const columns = Math.floor(canvas.width / fontSize);
+      const drops = new Array(columns).fill(1);
+      const chars = 'アイウエオカキクケコ0123456789XQ';
+      matrixInterval = setInterval(() => {
+        ctx.fillStyle = 'rgba(10,13,16,0.09)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.font = fontSize + 'px monospace';
+        for(let i = 0; i < drops.length; i++){
+          const char = chars[Math.floor(Math.random() * chars.length)];
+          ctx.fillStyle = Math.random() > 0.985 ? '#ff9d5c' : '#6ee7d8';
+          ctx.fillText(char, i * fontSize, drops[i] * fontSize);
+          if(drops[i] * fontSize > canvas.height && Math.random() > 0.975){ drops[i] = 0; }
+          drops[i]++;
+        }
+      }, 45);
+    } else {
+      clearInterval(matrixInterval);
+      canvas.classList.remove('on');
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+  }
+
+  /* ---- konami code (global) ---- */
+  const konamiSeq = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
+  let konamiPos = 0;
+  document.addEventListener('keydown', (e) => {
+    const key = e.key.length === 1 ? e.key.toLowerCase() : e.key;
+    if(key === konamiSeq[konamiPos]){
+      konamiPos++;
+      if(konamiPos === konamiSeq.length){ triggerKonami(); konamiPos = 0; }
+    } else {
+      konamiPos = (key === konamiSeq[0]) ? 1 : 0;
+    }
+  });
+  function triggerKonami(){
+    showToast('🎉 dogcheck: passed. you found the konami code.', 3200);
+    const emojis = ['🐾','🎵','✨','🍞','🟢'];
+    for(let i = 0; i < 26; i++){
+      const piece = document.createElement('div');
+      piece.className = 'confetti-piece';
+      piece.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+      piece.style.left = Math.random() * 100 + 'vw';
+      piece.style.animationDuration = (2.2 + Math.random() * 1.6) + 's';
+      piece.style.fontSize = (14 + Math.random() * 14) + 'px';
+      document.body.appendChild(piece);
+      setTimeout(() => piece.remove(), 4200);
+    }
+  }
+</script>
+
+</body>
+</html>
