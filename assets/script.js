@@ -178,14 +178,18 @@ let playByQuery = function(){ return null; };
   const termInput = document.getElementById('termInput');
   if(!termOverlay || !termBody || !termInput) return;
 
-  const fileSystem = {
+    const fileSystem = {
     'about.txt': "I'm Xia Qi, a student who spends way too much time writing Python, designing websites, and coming up with project ideas that somehow keep getting bigger.",
     'skills.txt': "software: Python, HTML, CSS, JavaScript, Luau\nhardware: Arduino, 3D Printing, PC Building, Minecraft Modding",
-    'music.playlist': "now spinning:\n- Hatsune Miku (various)\n- Kasane Teto (various)\n- DELTARUNE OST\n- ULTRAKILL OST",
-    'contact.txt': "github: github.com/Xia-Qi2450\ndiscord: dw_aelious\nemail: your@email.here",
+    'music.playlist': "now playing:\n- Hatsune Miku (various)\n- Kasane Teto (various)\n- DELTARUNE OST\n- ULTRAKILL OST",
+    'contact.txt': "ShitHub: github.com/Xia-Qi2450\ndiscord: dw_aelious\nemail: xiaqihill2010@gmail.com",
+    'anime.txt': "Dude... \nWho would want to see someone's anime.txt file? \nYou just got baited.",
+    'ultrakilltechs.txt': "I play the game for fun. \nI have learnt no cool techniques. \nI don't even know how to railcoin.",
   };
   const hiddenFiles = {
-    'secret.txt': "you found the hidden file. 🐾\nfun fact: the 'dogcheck' repo exists purely because of a Toby Fox bit. no regrets."
+    'secret.txt': "you found the hidden file. 🐾\nfun fact: the 'dogcheck' repo exists purely because of a Toby Fox bit. no regrets.",
+    'bruh.txt' : "Never gonna give you up \nNever gonna let you down \nNever gonna run around and desert you \nNever gonna make you cry \nNever gonna say goodbye \nNever gonna tell a lie and hurt you",
+    'miku.txt' : "[Verse 1] \nMiku, Miku, you can call me Miku \nBlue hair, blue tie, hiding in your Wi-Fi \nOpen secrets, anyone can find me \nHear your music running through my mind \n\n[Chorus] \nI'm thinking Miku, Miku (Ooh-ee-ooh) \nI'm thinking Miku, Miku (Ooh-ee-ooh) \nI'm thinking Miku, Miku (Ooh-ee-ooh) \nI'm thinking Miku, Miku (Ooh-ee-ooh) \n\n[Pre-Chorus] \nI'm on top of the world because of you \nAll I wanted to do is follow you \nI'll keep singing along to all of you \nI'll keep singing along \n\n[Chorus] \nI'm thinking Miku, Miku (Ooh-ee-ooh) \nI'm thinking Miku, Miku (Ooh-ee-ooh) \nI'm thinking Miku, Miku (Ooh-ee-ooh) \nI'm thinking Miku, Miku (Ooh-ee-ooh)"
   };
   const repoList = [
     ['dogcheck', 'DELTARUNE dogcheck screen, on the web', 'github.com/Xia-Qi2450/dogcheck'],
@@ -289,14 +293,14 @@ let playByQuery = function(){ return null; };
           "Shell: zsh --fake\n" +
           "Languages: Python, HTML/CSS/JS, Luau\n" +
           "Hobbies: 3D printing, Arduino, PC building, Minecraft modding\n" +
-          "Now playing: Hatsune Miku / Kasane Teto\n" +
+          "NOW PLAYING: KEYGEN CHURCH - Tenebre Rosso Sangue (ULTRAKILL Soundtrack)\n" +
           "Uptime: since forever, brain still compiling"
         );
         break;
       case 'ls':
         if(args[0] === '-a'){
           tprint(Object.keys(fileSystem).join('  ') + '  ' + Object.keys(hiddenFiles).join('  '));
-          tprint('(found a hidden one, huh)', 'dim');
+          tprint('(found a few hidden ones, huh)', 'dim');
         } else {
           tprint(Object.keys(fileSystem).join('  '));
         }
@@ -371,6 +375,7 @@ let playByQuery = function(){ return null; };
         termBody.innerHTML = '';
         break;
       case 'exit':
+        tprint("Bye!", "ok")
         closeTerm();
         break;
       default:
