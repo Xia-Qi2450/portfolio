@@ -126,10 +126,10 @@ let playByQuery = function(){ return null; };
     if(!tracks[i]) return;
     currentIndex = i;
     const t = tracks[i];
-    audio.src = 'music/' + t.file;
+    audio.src = + t.file;
     playerTitle.textContent = t.title || t.file;
     playerArtist.textContent = t.artist || '';
-    playerArt.innerHTML = t.cover ? '<img src="music/' + t.cover + '" alt="">' : '🎵';
+    playerArt.innerHTML = t.cover ? '<img src="' + t.cover + '" alt="">' : '🎵';
     renderTrackList();
     if(autoplay){
       audio.play().then(() => { isPlaying = true; playBtn.textContent = '⏸'; }).catch(() => {});
