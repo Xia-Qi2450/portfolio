@@ -1,3 +1,30 @@
-music/.DS_Store
+# Dependencies
+node_modules/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# macOS
 .DS_Store
-*.jpg
+
+# Windows
+Thumbs.db
+
+# VS Code
+.vscode/
+
+# Environment variables
+.env
+.env.*
+
+# Build output
+dist/
+build/
+
+# Coverage
+coverage/
+
+#project stuff
+WebsiteScreenshot*.jpg

@@ -84,13 +84,13 @@ let playByQuery = function(){ return null; };
   const volumeEl = document.getElementById('volume');
 
   const formatTime = (s) => {
-    if(!isFinite(s) || s == null) return '0:00';
+    if(!isFinite(s) || s === null) return '0:00';
     const m = Math.floor(s / 60), sec = Math.floor(s % 60);
     return m + ':' + String(sec).padStart(2, '0');
   };
   const escapeHtml = (s) => {
     const d = document.createElement('div');
-    d.textContent = s == null ? '' : String(s);
+    d.textContent = s === null ? '' : String(s);
     return d.innerHTML;
   };
 
@@ -119,6 +119,7 @@ let playByQuery = function(){ return null; };
       renderTrackList();
     } catch(err){
       renderTrackList();
+      console.warn('Failed to load tracks.json: ' + err.message);
     }
   };
 
@@ -126,7 +127,8 @@ let playByQuery = function(){ return null; };
     if(!tracks[i]) return;
     currentIndex = i;
     const t = tracks[i];
-    audio.src = + t.file;
+    audio.src = t.file;
+    audio.load();
     playerTitle.textContent = t.title || t.file;
     playerArtist.textContent = t.artist || '';
     playerArt.innerHTML = t.cover ? '<img src="' + t.cover + '" alt="">' : '🎵';
