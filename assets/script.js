@@ -29,7 +29,7 @@ document.querySelectorAll('#copyDiscord, #copyDiscord2').forEach(btn => btn.addE
 const toastEl = document.getElementById('toast');
 let toastTimer = null;
 function showToast(msg, ms){
-  if(!toastEl) return;
+  if(!toastEl) {return;};
   toastEl.textContent = msg;
   toastEl.classList.add('show');
   clearTimeout(toastTimer);
@@ -48,7 +48,7 @@ console.log('%cnice of you to check devtools. try pressing ` on the page for som
 /* ---- avatar click easter egg ---- */
 (function(){
   const avatarImg = document.getElementById('avatarImg');
-  if(!avatarImg) return;
+  if(!avatarImg) {return;}
   let avatarClicks = 0;
   avatarImg.addEventListener('click', () => {
     avatarClicks++;
@@ -66,7 +66,7 @@ let playByQuery = function(){ return null; };
 
 (function(){
   const playerBox = document.getElementById('playerBox');
-  if(!playerBox) return;
+  if(!playerBox) {return;};
 
   const audio = new Audio();
   audio.volume = 0.7;
@@ -84,7 +84,7 @@ let playByQuery = function(){ return null; };
   const volumeEl = document.getElementById('volume');
 
   const formatTime = (s) => {
-    if(!isFinite(s) || s === null) return '0:00';
+    if(!isFinite(s) || s === null) {return '0:00';}
     const m = Math.floor(s / 60), sec = Math.floor(s % 60);
     return m + ':' + String(sec).padStart(2, '0');
   };
@@ -112,9 +112,9 @@ let playByQuery = function(){ return null; };
   const loadTracks = async () => {
     try{
       const res = await fetch('music/tracks.json');
-      if(!res.ok) throw new Error('missing');
+      if(!res.ok) {throw new Error('missing');}
       const data = await res.json();
-      if(!Array.isArray(data) || !data.length) throw new Error('empty');
+      if(!Array.isArray(data) || !data.length) {throw new Error('empty');}
       tracks = data;
       renderTrackList();
     } catch(err){
@@ -124,7 +124,7 @@ let playByQuery = function(){ return null; };
   };
 
   function selectTrack(i, autoplay){
-    if(!tracks[i]) return;
+    if(!tracks[i]) {return;};
     currentIndex = i;
     const t = tracks[i];
     audio.src = t.file;
@@ -143,8 +143,8 @@ let playByQuery = function(){ return null; };
     if(isPlaying){ audio.pause(); isPlaying = false; playBtn.textContent = '▶'; }
     else { audio.play().then(() => { isPlaying = true; playBtn.textContent = '⏸'; }).catch(() => {}); }
   }
-  function nextTrack(){ if(!tracks.length) return; selectTrack((currentIndex + 1) % tracks.length, true); }
-  function prevTrack(){ if(!tracks.length) return; selectTrack((currentIndex - 1 + tracks.length) % tracks.length, true); }
+  function nextTrack(){ if(!tracks.length) {return;} selectTrack((currentIndex + 1) % tracks.length, true); }
+  function prevTrack(){ if(!tracks.length) {return;} selectTrack((currentIndex - 1 + tracks.length) % tracks.length, true); }
 
   playBtn.addEventListener('click', togglePlay);
   document.getElementById('nextBtn').addEventListener('click', nextTrack);
@@ -178,7 +178,7 @@ let playByQuery = function(){ return null; };
   const termOverlay = document.getElementById('termOverlay');
   const termBody = document.getElementById('termBody');
   const termInput = document.getElementById('termInput');
-  if(!termOverlay || !termBody || !termInput) return;
+  if(!termOverlay || !termBody || !termInput) {return;};
 
     const fileSystem = {
     'about.txt': "I'm Xia Qi, a student who spends way too much time writing Python, designing websites, and coming up with project ideas that somehow keep getting bigger.",
@@ -203,7 +203,7 @@ let playByQuery = function(){ return null; };
   ];
 
   let termOpened = false;
-  let cmdHistory = [];
+  const cmdHistory = [];
   let histPos = -1;
   let matrixOn = false;
 
@@ -253,7 +253,7 @@ let playByQuery = function(){ return null; };
     if(trimmed.length){ cmdHistory.push(trimmed); }
     histPos = cmdHistory.length;
     tprint('guest@xia-qi:~$ ' + raw, 'in-line');
-    if(!trimmed.length) return;
+    if(!trimmed.length) {return;}
 
     if(trimmed.includes(':(){') || trimmed.includes(':|:&')){
       tprint("nice try. this terminal doesn't have a shell to bomb.", 'err');
@@ -377,7 +377,7 @@ let playByQuery = function(){ return null; };
         termBody.innerHTML = '';
         break;
       case 'exit':
-        tprint("Bye!", "ok")
+        tprint("Bye!", "ok");
         closeTerm();
         break;
       default:
@@ -403,14 +403,14 @@ let playByQuery = function(){ return null; };
     if(e.key === 'Escape' && termOverlay.classList.contains('open')){ closeTerm(); return; }
     if(e.key === '`' && !termOverlay.classList.contains('open')){ e.preventDefault(); openTerm(); }
   });
-  termOverlay.addEventListener('mousedown', (e) => { if(e.target === termOverlay) closeTerm(); });
+  termOverlay.addEventListener('mousedown', (e) => { if(e.target === termOverlay) {closeTerm();} });
 
   /* ---- matrix rain ---- */
   const canvas = document.getElementById('matrixCanvas');
   const ctx = canvas ? canvas.getContext('2d') : null;
   let matrixInterval = null;
   window.toggleMatrix = function toggleMatrix(){
-    if(!canvas || !ctx) return;
+    if(!canvas || !ctx) {return;}
     matrixOn = !matrixOn;
     if(matrixOn){
       canvas.classList.add('on');
@@ -439,7 +439,7 @@ let playByQuery = function(){ return null; };
     }
   };
   // local alias used inside this closure
-  var toggleMatrix = window.toggleMatrix;
+  const toggleMatrix = window.toggleMatrix;
 
   /* ---- konami code (global) ---- */
   const konamiSeq = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];

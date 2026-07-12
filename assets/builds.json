@@ -47,5 +47,21 @@
     "lang": "Python",
     "status": "in-progress",
     "progress": 0.07
+  },
+  {
+    "title": "pythonTest",
+    "desc": "A script where you can run all of your Python endavours. Experiment with your code without the normal 'Traceback (most recent call last)'.",
+    "url": "https://github.com/Xia-Qi2450/pythonTest",
+    "lang": "Python",
+    "status": "in-progress",
+    "progress": 12
+  },
+  {
+    "title": "musicTrasition",
+    "desc": "A calm to combat music transition inspired by ULTRAKILL. Using PyGame and Tkinker",
+    "url": "https://xia-qi2450.github.io/dogcheck/?error=404&url=https://github.com/Xia-Qi2450/musicTransition/",
+    "lang": "Python",
+    "status": "todo",
+    "progress": 0
   }
 ]
