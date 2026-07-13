@@ -42,11 +42,11 @@
   },
   {
     "title": "EulerProjectAttempts",
-    "desc": "Ongoing attempts at the Project Euler archive of problems — open-ended by nature, so this one never really finishes.",
+    "desc": "Ongoing attempts at the Project Euler archive of problems — open-ended by nature, so this one never really finishes. (I'm aiming to finish 100 questions)",
     "url": "https://github.com/Xia-Qi2450/EulerProjectAttempts",
     "lang": "Python",
     "status": "in-progress",
-    "progress": 0.07
+    "progress": 7
   },
   {
     "title": "pythonTest",
