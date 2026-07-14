@@ -46,7 +46,7 @@
     "url": "https://github.com/Xia-Qi2450/EulerProjectAttempts",
     "lang": "Python",
     "status": "in-progress",
-    "progress": 10
+    "progress": 15
   },
   {
     "title": "pythonTest",
@@ -58,7 +58,15 @@
   },
   {
     "title": "musicTrasition",
-    "desc": "A calm to combat music transition inspired by ULTRAKILL. Using PyGame and Tkinker",
+    "desc": "A calm to combat music transition inspired by ULTRAKILL. Using PyGame and Tkinker.",
+    "url": "https://xia-qi2450.github.io/dogcheck/?error=404&url=https://github.com/Xia-Qi2450/musicTransition/",
+    "lang": "Python",
+    "status": "todo",
+    "progress": 0
+  },
+  {
+    "title": "ultrakillStyle",
+    "desc": "A recreation of the ULTRAKILL style meter in the terminal that reacts to what you do on your device.",
     "url": "https://xia-qi2450.github.io/dogcheck/?error=404&url=https://github.com/Xia-Qi2450/musicTransition/",
     "lang": "Python",
     "status": "todo",
