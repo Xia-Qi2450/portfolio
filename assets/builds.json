@@ -10,7 +10,7 @@
   },
   {
     "title": "robo-queue",
-    "desc": "A small Python program built to help with robotics competition prep.",
+    "desc": "A small Python program built to help with robotics competition prep. Uses text-to-speech to announce the names.",
     "url": "https://github.com/Xia-Qi2450/robo-queue",
     "lang": "Python",
     "status": "finished",
@@ -18,7 +18,7 @@
   },
   {
     "title": "SCP_Data",
-    "desc": "A terminal UI that pulls and displays articles straight from the official SCP Wiki.",
+    "desc": "A terminal UI that displays articles straight from the official SCP Wiki. You have to add SCP entries by yourself.",
     "url": "https://github.com/Xia-Qi2450/SCP_Data",
     "lang": "Python",
     "status": "finished",
@@ -26,7 +26,7 @@
   },
   {
     "title": "ttsScript",
-    "desc": "A friendly text-to-speech script built on pyttsx3.",
+    "desc": "A friendly text-to-speech script built on pyttsx3. Run this on a Windows machine for maximum compatibility.",
     "url": "https://github.com/Xia-Qi2450/ttsScript",
     "lang": "Python",
     "status": "finished",
@@ -34,11 +34,11 @@
   },
   {
     "title": "animeClassPython",
-    "desc": "Ran out of project ideas mid-way through this one. Probably easier to just go read the code.",
+    "desc": "Ran out of project ideas mid-way through this one. Probably easier to just go read the code. It's still somehow actively editied",
     "url": "https://github.com/Xia-Qi2450/animeClassPython",
     "lang": "Python",
     "status": "in-progress",
-    "progress": 10
+    "progress": 12
   },
   {
     "title": "EulerProjectAttempts",
@@ -46,7 +46,7 @@
     "url": "https://github.com/Xia-Qi2450/EulerProjectAttempts",
     "lang": "Python",
     "status": "in-progress",
-    "progress": 15
+    "progress": 20
   },
   {
     "title": "pythonTest",
