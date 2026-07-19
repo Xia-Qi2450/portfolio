@@ -46,7 +46,7 @@
     "url": "https://github.com/Xia-Qi2450/EulerProjectAttempts",
     "lang": "Python",
     "status": "in-progress",
-    "progress": 20
+    "progress": 25
   },
   {
     "title": "pythonTest",
@@ -55,6 +55,14 @@
     "lang": "Python",
     "status": "in-progress",
     "progress": 12
+  },
+  {
+    "title": "XiaWebOS",
+    "desc": "A Portfolio website in the design of a operating system with a POST screen, a BIOS and Asset loading resembling to Arch Linux. It's a huge project and will likely slow me down on other ones. Currently in indev and not publicly viewable.",
+    "url": "https://xia-qi2450.github.io/dogcheck/?error=403&url=https://github.com/Xia-Qi2450/XiaWebOS/",
+    "lang": "Python",
+    "status": "in-progress",
+    "progress": 5
   },
   {
     "title": "musicTrasition",
