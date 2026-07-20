@@ -1,0 +1,83 @@
+[
+  {
+    "title": "dogcheck",
+    "desc": "A web recreation of the DOGCHECK screen from Toby Fox's games — URL parameters let you override the message, or show an HTTP/Chrome error code with its official name. 5% chance of an easter egg (DELTARUNE Chapter 4 spoilers).",
+    "url": "https://github.com/Xia-Qi2450/dogcheck",
+    "lang": "HTML",
+    "status": "finished",
+    "progress": 100,
+    "featured": true
+  },
+  {
+    "title": "robo-queue",
+    "desc": "A small Python program built to help with robotics competition prep. Uses text-to-speech to announce the names.",
+    "url": "https://github.com/Xia-Qi2450/robo-queue",
+    "lang": "Python",
+    "status": "finished",
+    "progress": 100
+  },
+  {
+    "title": "SCP_Data",
+    "desc": "A terminal UI that displays articles straight from the official SCP Wiki. You have to add SCP entries by yourself.",
+    "url": "https://github.com/Xia-Qi2450/SCP_Data",
+    "lang": "Python",
+    "status": "finished",
+    "progress": 100
+  },
+  {
+    "title": "ttsScript",
+    "desc": "A friendly text-to-speech script built on pyttsx3. Run this on a Windows machine for maximum compatibility.",
+    "url": "https://github.com/Xia-Qi2450/ttsScript",
+    "lang": "Python",
+    "status": "finished",
+    "progress": 100
+  },
+  {
+    "title": "animeClassPython",
+    "desc": "Ran out of project ideas mid-way through this one. Probably easier to just go read the code. It's still somehow actively editied",
+    "url": "https://github.com/Xia-Qi2450/animeClassPython",
+    "lang": "Python",
+    "status": "in-progress",
+    "progress": 12
+  },
+  {
+    "title": "EulerProjectAttempts",
+    "desc": "Ongoing attempts at the Project Euler archive of problems — open-ended by nature, so this one never really finishes. (I'm aiming to finish 100 questions)",
+    "url": "https://github.com/Xia-Qi2450/EulerProjectAttempts",
+    "lang": "Python",
+    "status": "in-progress",
+    "progress": 25
+  },
+  {
+    "title": "pythonTest",
+    "desc": "A script where you can run all of your Python endavours. Experiment with your code without the normal 'Traceback (most recent call last)'.",
+    "url": "https://github.com/Xia-Qi2450/pythonTest",
+    "lang": "Python",
+    "status": "in-progress",
+    "progress": 12
+  },
+  {
+    "title": "XiaWebOS",
+    "desc": "A Portfolio website in the design of a operating system with a POST screen, a BIOS and Asset loading resembling to Arch Linux. It's a huge project and will likely slow me down on other ones. Currently in indev and not publicly viewable.",
+    "url": "https://xia-qi2450.github.io/dogcheck/?error=403&url=https://github.com/Xia-Qi2450/XiaWebOS/",
+    "lang": "Python",
+    "status": "in-progress",
+    "progress": 5
+  },
+  {
+    "title": "musicTrasition",
+    "desc": "A calm to combat music transition inspired by ULTRAKILL. Using PyGame and Tkinker.",
+    "url": "https://xia-qi2450.github.io/dogcheck/?error=404&url=https://github.com/Xia-Qi2450/musicTransition/",
+    "lang": "Python",
+    "status": "todo",
+    "progress": 0
+  },
+  {
+    "title": "ultrakillStyle",
+    "desc": "A recreation of the ULTRAKILL style meter in the terminal that reacts to what you do on your device.",
+    "url": "https://xia-qi2450.github.io/dogcheck/?error=404&url=https://github.com/Xia-Qi2450/ultrakillStyle/",
+    "lang": "Python",
+    "status": "todo",
+    "progress": 0
+  }
+]

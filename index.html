@@ -2,129 +2,152 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Xia Qi — Dev & Tinkerer</title>
-<meta name="description" content="Xia Qi — student building things in Python, the web, and hardware. Software on one track, soldering irons on the other.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>XiaOS — Xia Qi</title>
+<meta name="description" content="XiaOS — Xia Qi's portfolio, rebuilt as a boot-to-desktop web operating system. Portfolio, Playlist, File Explorer, Terminal, Task Manager and Settings, each as an app.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/styles.css">
+<link rel="stylesheet" href="css/theme.css">
+<link rel="stylesheet" href="css/boot.css">
+<link rel="stylesheet" href="css/shell.css">
+<link rel="stylesheet" href="css/apps.css">
 </head>
 <body>
 <!--
   hey, nice of you to check the source.
-  there's a hidden terminal on this page — try pressing `
+  this whole site boots like an OS now. press ` anywhere once you're
+  on the desktop for the terminal — same tricks as before still work.
 -->
 
-<div class="topbar">
-  <div class="topbar-inner">
-    <a href="index.html" class="mark"><span class="dot"></span>XIA_QI</a>
-    <nav class="topnav">
-      <a href="stack.html">stack</a>
-      <a href="builds.html">builds</a>
-      <a href="off-duty.html">off-duty</a>
-      <a href="playlist.html">playlist</a>
-      <a href="connect.html">connect</a>
-      <span class="term-hint" title="try pressing the backtick key">`</span>
-    </nav>
-  </div>
-</div>
+<!-- ======================= BOOT SEQUENCE ======================= -->
+<div id="boot">
+  <button class="boot-skip" id="bootSkip" type="button">Skip boot »</button>
 
-<header class="hero" id="top">
-  <div class="wrap hero-inner">
-    <img class="avatar" id="avatarImg" src="https://avatars.githubusercontent.com/u/196024955?v=4" alt="Xia Qi's GitHub avatar" width="84" height="84" loading="lazy">
-    <div class="hero-text">
-      <p class="prompt">whoami<span class="cursor" aria-hidden="true"></span></p>
-      <h1>Xia Qi</h1>
-      <p class="role"><span class="sw">Frontend + Backend</span><span class="sep">/</span><span class="hw">Maker</span></p>
-      <p class="status-line"><span class="status-dot"></span>status: probably deep in a rabbit hole right now</p>
-      <p class="bio">I'm Xia Qi, a student who spends way too much time writing Python, designing websites, and coming up with project ideas that somehow keep getting bigger.</p>
-      <div class="cta-row">
-        <a class="btn btn-primary" href="https://github.com/Xia-Qi2450" target="_blank" rel="noopener">View GitHub ↗</a>
-        <button class="btn btn-ghost" id="copyDiscord" type="button">Copy Discord: dw_aelious</button>
+  <div class="boot-stage active" id="stage-post">
+    <div id="postBody"></div>
+  </div>
+
+  <div class="boot-stage" id="stage-bios">
+    <div class="bios-frame">
+      <p class="bios-title">XiaOS BIOS Setup Utility — Copper/Cyan Systems Inc.</p>
+      <div class="bios-menubar" id="biosMenubar"></div>
+      <div class="bios-body" id="biosBody"></div>
+      <div class="bios-footer">
+        <span><b>ESC</b>Exit</span>
+        <span><b>←/→</b>Select Tab</span>
+        <span><b>F10</b>Save &amp; Exit</span>
       </div>
     </div>
   </div>
-</header>
 
-<main class="wrap">
-  <div class="board">
-    <div class="board-line" aria-hidden="true"></div>
-
-    <section class="node" id="stack" data-track="copper">
-      <div class="node-marker"><span class="pad"></span><span class="idx">01</span></div>
-      <div class="node-content">
-        <p class="eyebrow">Stuff I know</p>
-        <h2>Stack</h2>
-        <p class="node-sub">Python, the web, Luau — plus the hardware side: Arduino, 3D printing, PC builds.</p>
-        <a class="hub-link" href="stack.html"><span class="hub-link-title">Open Stack</span><span class="hub-link-arrow">→</span></a>
-      </div>
-    </section>
-
-    <section class="node" id="builds" data-track="cyan">
-      <div class="node-marker"><span class="pad"></span><span class="idx">02</span></div>
-      <div class="node-content">
-        <p class="eyebrow">Stuff I did</p>
-        <h2>Builds</h2>
-        <p class="node-sub">Six pinned repos on GitHub, from a DELTARUNE tribute to a Project Euler grind.</p>
-        <a class="hub-link" href="builds.html"><span class="hub-link-title">Open Builds</span><span class="hub-link-arrow">→</span></a>
-      </div>
-    </section>
-
-    <section class="node" id="off-duty" data-track="copper">
-      <div class="node-marker"><span class="pad"></span><span class="idx">03</span></div>
-      <div class="node-content">
-        <p class="eyebrow">Stuff I do when free</p>
-        <h2>Off Duty</h2>
-        <p class="node-sub">Gaming, anime, and a soft spot for vocal synths.</p>
-        <a class="hub-link" href="off-duty.html"><span class="hub-link-title">Open Off Duty</span><span class="hub-link-arrow">→</span></a>
-      </div>
-    </section>
-
-    <section class="node" id="playlist" data-track="cyan">
-      <div class="node-marker"><span class="pad"></span><span class="idx">04</span></div>
-      <div class="node-content">
-        <p class="eyebrow">Stuff I listen to</p>
-        <h2>Playlist</h2>
-        <p class="node-sub">An actual audio player, wired up to whatever's sitting in <code>/music/</code>.</p>
-        <a class="hub-link" href="playlist.html"><span class="hub-link-title">Open Playlist</span><span class="hub-link-arrow">→</span></a>
-      </div>
-    </section>
-
-    <section class="node" id="connect" data-track="copper">
-      <div class="node-marker"><span class="pad"></span><span class="idx">05</span></div>
-      <div class="node-content">
-        <p class="eyebrow">Stuff to contact me</p>
-        <h2>Connect</h2>
-        <p class="node-sub">GitHub, Discord, and a terminal only some people find.</p>
-        <a class="hub-link" href="connect.html"><span class="hub-link-title">Open Connect</span><span class="hub-link-arrow">→</span></a>
-      </div>
-    </section>
-  </div>
-</main>
-
-<footer>
-  <p>Built with a breadboard in one hand and a keyboard in the other.</p>
-  <p class="hint">// there's more here than a scroll can find. try `</p>
-</footer>
-
-<!-- secret terminal -->
-<div class="term-overlay" id="termOverlay" role="dialog" aria-modal="true" aria-label="Secret terminal">
-  <div class="term-window">
-    <div class="term-titlebar">
-      <span class="tl-dot r"></span><span class="tl-dot y"></span><span class="tl-dot g"></span>
-      <span class="term-title-text">guest@xia-qi: ~</span>
-      <span class="term-esc">esc to close</span>
+  <div class="boot-stage" id="stage-grub">
+    <div class="grub-box">
+      <p class="grub-title boot-logo-mark"><span class="dot"></span>XiaOS GNU GRUB-ish  2.4</p>
+      <p class="grub-sub">Use the ↑ and ↓ keys to select which entry is highlighted, then press Enter.</p>
+      <ul class="grub-menu" id="grubMenu"></ul>
+      <p class="grub-hint">The highlighted entry will boot automatically in <span class="grub-countdown" id="grubCountdown">5s</span>.</p>
     </div>
-    <div class="term-body" id="termBody"></div>
-    <div class="term-input-row">
-      <span class="term-prompt">guest@xia-qi:~$</span>
-      <input class="term-input" id="termInput" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="terminal input">
+  </div>
+
+  <div class="boot-stage" id="stage-klog">
+    <div id="klogBody"></div>
+  </div>
+
+  <div class="boot-stage" id="stage-lock">
+    <div id="lockScreenMain">
+      <div class="lock-time" id="lockTime">12:00 AM</div>
+      <div class="lock-date" id="lockDate">Loading...</div>
+      <div class="lock-hint">click or press any key to continue</div>
+    </div>
+    <div class="lock-signin" id="lockSignin">
+      <img class="lock-avatar" src="https://avatars.githubusercontent.com/u/196024955?v=4" alt="Xia Qi's avatar">
+      <p class="lock-name">Xia Qi</p>
+      <p class="lock-role">guest session — no password needed</p>
+      <button class="lock-signin-btn" id="lockSigninBtn" type="button">Sign in →</button>
+      <p class="lock-note">(it's a portfolio site. everyone's a guest.)</p>
     </div>
   </div>
 </div>
-<canvas id="matrixCanvas"></canvas>
-<div class="toast" id="toast"></div>
-<script src="assets/script.js"></script>
+
+<!-- ======================= DESKTOP OS ======================= -->
+<div id="os">
+  <div id="desktop">
+    <div id="desktop-trace"></div>
+    <div id="desktop-icons"></div>
+    <div id="windows-layer">
+      <div class="snap-preview" id="snap-preview"></div>
+    </div>
+  </div>
+
+  <div id="taskbar">
+    <button class="tb-start" id="tbStart" type="button"><span class="dot"></span>XIA_QI</button>
+    <div class="tb-search" id="tbSearchBox">
+      <span id="tbSearchIcon"></span>
+      <input type="text" placeholder="Type here to search" id="smQuickSearch">
+    </div>
+    <div id="tb-apps"></div>
+    <div class="tb-spacer"></div>
+    <div id="tb-tray">
+      <button class="tray-btn" id="trayMatrix" type="button" title="Matrix rain (or type `matrix` in the terminal)"></button>
+      <button class="tray-btn" id="trayNetwork" type="button" title="Network"></button>
+      <button class="tray-btn" id="trayVolume" type="button" title="Volume"></button>
+      <button class="tray-btn" id="trayBell" type="button" title="Notifications"></button>
+    </div>
+    <div class="tb-clock" id="tbClock">
+      <span class="tc-time" id="tcTime">12:00 AM</span>
+      <span class="tc-date" id="tcDate">1/1/2026</span>
+    </div>
+    <button class="tb-show-desktop" id="tbShowDesktop" type="button" title="Show desktop"></button>
+  </div>
+
+  <div id="startmenu">
+    <div class="sm-search">
+      <span></span>
+      <input type="text" id="smSearchInput" placeholder="Search apps">
+    </div>
+    <p class="sm-section-title" id="smGridSection">Pinned</p>
+    <div class="sm-grid" id="smGrid"></div>
+    <p class="sm-section-title" id="smListTitle">Recommended</p>
+    <div class="sm-list" id="smList"></div>
+    <div class="sm-footer">
+      <div class="sm-user">
+        <img src="https://avatars.githubusercontent.com/u/196024955?v=4" alt="Xia Qi">
+        <span>Xia Qi</span>
+      </div>
+      <div class="sm-power">
+        <button class="sm-power-btn" id="smPowerBtn" type="button" title="Power"></button>
+        <div class="sm-power-menu" id="smPowerMenu">
+          <button class="sm-power-item" id="smPowerLock" type="button"></button>
+          <button class="sm-power-item" id="smPowerRestart" type="button"></button>
+          <button class="sm-power-item" id="smPowerShutdown" type="button"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="actioncenter"></div>
+  <div class="ctxmenu" id="ctxmenu"></div>
+  <div id="notif-stack"></div>
+  <div class="toast" id="toast"></div>
+  <canvas id="matrixCanvas"></canvas>
+</div>
+
+<script src="js/icons.js"></script>
+<script src="js/data.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/wm.js"></script>
+<script src="js/easter-eggs.js"></script>
+<script src="js/desktop.js"></script>
+<script src="js/taskbar.js"></script>
+<script src="js/startmenu.js"></script>
+<script src="js/boot.js"></script>
+<script src="js/apps/portfolio.js"></script>
+<script src="js/apps/playlist.js"></script>
+<script src="js/apps/terminal.js"></script>
+<script src="js/apps/explorer.js"></script>
+<script src="js/apps/settings.js"></script>
+<script src="js/apps/taskmgr.js"></script>
+<script src="js/main.js"></script>
 </body>
 </html>

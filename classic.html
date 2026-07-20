@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>404</title>
+<style>
+  body{ margin:0; height:100vh; display:flex; align-items:center; justify-content:center;
+    background:#0a0d10; color:#7c8a95; font-family: ui-monospace, 'JetBrains Mono', monospace; font-size:14px; }
+  a{ color:#6ee7d8; }
+</style>
+</head>
+<body>
+  <p id="msg">redirecting to v3&hellip;</p>
+  <script>
+    var target = "/v3/index.html";
+    document.getElementById('msg').innerHTML = 'redirecting to version 3&hellip; <a href="' + target + '">click here if nothing happens</a>';
+    window.location.replace(target);
+  </script>
+  <noscript>
+    <p>JavaScript is off, so here's the direct link instead:
+      <a href="/v3/index.html">Original Website (Mobile or Tablet)</a>
+    </p>
+  </noscript>
+</body>
+</html>

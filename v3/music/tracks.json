@@ -1,0 +1,116 @@
+[
+  {
+    "title": "After Hours (ULTRAKILL OST: 7-S Theme)",
+    "artist": "Heaven Pierce Her",
+    "file": "music/afterhours.mp3",
+    "cover": "music/covers/Encores_I_Cover.webp"
+  },
+  {
+    "title": "Another Medium (UNDERTALE OST)",
+    "artist": "Toby Fox",
+    "file": "music/anothermedium.mp3",
+    "cover": "music/covers/UNDERTALE_Soundtrack_cover.png"
+  },
+  {
+    "title": "Castle Vein (ULTRAKILL OST: 1-3 Theme)",
+    "artist": "Heaven Pierce Her",
+    "file": "music/castlevein.mp3",
+    "cover": "music/covers/INFINITEHYPERDEATH.webp"
+  },
+  {
+    "title": "Cold Winds (ULTRAKILL OST: 2-1 Theme)",
+    "artist": "Heaven Pierce Her",
+    "file": "music/coldwinds.mp3",
+    "cover": "music/covers/INFINITEHYPERDEATH.webp"
+  },
+  {
+    "title": "CORE (UNDERTALE OST)",
+    "artist": "Toby Fox",
+    "file": "music/core.mp3",
+    "cover": "music/covers/UNDERTALE_Soundtrack_cover.png"
+  },
+  {
+    "title": "Field of Hopes and Dreams (DELTARUNE Chapter 1 OST)",
+    "artist": "Toby Fox",
+    "file": "music/field.mp3",
+    "cover": "music/covers/DELTARUNE_Chapter_1_OST_cover.png.webp"
+  },
+  {
+    "title": "Ever Higher (DELTARUNE Chapter 3+4 OST)",
+    "artist": "Toby Fox",
+    "file": "music/everhigher.mp3",
+    "cover": "music/covers/DELTARUNE_Chapters_3+4_OST_cover.png.webp"
+  },
+  {
+    "title": "Fireplace (DELTARUNE Chapter 3+4 OST)",
+    "artist": "Toby Fox",
+    "file": "music/fireplace.mp3",
+    "cover": "music/covers/DELTARUNE_Chapters_3+4_OST_cover.png.webp"
+  },
+  {
+    "title": "Flower Castle (DELTARUNE Chapter 5 OST)",
+    "artist": "Toby Fox",
+    "file": "music/flowercastle.mp3",
+    "cover": "music/covers/DELTARUNE_Chapter_5_OST_cover.png.webp"
+  },
+  {
+    "title": "Garden of Hopes and Dreams (DELTARUNE Chapter 5 OST)",
+    "artist": "Toby Fox",
+    "file": "music/garden.mp3",
+    "cover": "music/covers/DELTARUNE_Chapter_5_OST_cover.png.webp"
+  },
+  {
+    "title": "Hopes and Dreams (UNDERTALE OST)",
+    "artist": "Toby Fox",
+    "file": "music/hopesanddreams.mp3",
+    "cover": "music/covers/UNDERTALE_Soundtrack_cover.png"
+  },
+  {
+    "title": "Machine Love (feat. Kasane Teto SV)",
+    "artist": "Jamie Paige",
+    "file": "music/machinelove.mp3",
+    "cover": "music/covers/machinelovecover.jpg"
+  },
+  {
+    "title": "Miku (feat. Hatsune Miku)",
+    "artist": "Anamanaguchi & Hatsune Miku",
+    "file": "music/miku.mp3",
+    "cover": "music/covers/anamanaguchimikucover.jpg"
+  },
+  {
+    "title": "Pandora Palace (DELTARUNE Chapter 2 OST",
+    "artist": "Toby Fox",
+    "file": "music/pandorapalace.mp3",
+    "cover": "music/covers/DELTARUNE_Chapter_2_OST_cover.png.webp"
+  },
+  {
+    "title": "Racing into the Night (夜に駆ける)",
+    "artist": "YOASOBI",
+    "file": "music/racingintothenight.mp3",
+    "cover": "music/covers/racingintothenightcover.jpg"
+  },
+  {
+    "title": "Retry Now (feat. Hatsune Miku)",
+    "artist": "NAKISO",
+    "file": "music/retrynow.mp3",
+    "cover": "music/covers/retrynowcover.jpg"
+  },
+  {
+    "title": "Tenebre Rosso Sangue (Calm) (ULTRAKILL OST: P-2 #1 Theme)",
+    "artist": "KEYGEN CHURCH",
+    "file": "music/tenebrerossosangue_c.mp3",
+    "cover": "music/covers/tenebrerossosanguecover.jpg"
+  },
+  {
+    "title": "Tenebre Rosso Sangue (ULTRAKILL OST: P-2 #1 Theme)",
+    "artist": "KEYGEN CHURCH",
+    "file": "music/tenebrerossosangue.mp3",
+    "cover": "music/covers/tenebrerossosanguecover.jpg"
+  },
+  {
+    "title": "Want You Gone (Portal 2: Songs to Test By - Volume 3)",
+    "artist": "Aperture Science Psychoacoustics Laboratory",
+    "file": "music/wantyougone.mp3",
+    "cover": "music/covers/Portal_2_Soundtrack_Cover_-_Volume_1.jpg"
+  }
+]

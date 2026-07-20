@@ -1,0 +1,114 @@
+/* ============================================================
+   XiaOS — boot.css
+   POST screen -> bootloader -> kernel log -> lock screen
+   ============================================================ */
+
+#boot{
+  position: fixed; inset: 0; z-index: var(--z-boot);
+  background: #000;
+  color: #d7dde0;
+  font-family: var(--mono);
+}
+#boot.done{ display: none; }
+
+.boot-skip{
+  position: absolute; right: 18px; bottom: 16px;
+  font-family: var(--mono); font-size: 11px; color: #4b5860;
+  border: 1px solid #22282c; background: rgba(255,255,255,0.02);
+  padding: 6px 12px; border-radius: 4px; cursor: pointer; z-index: 5;
+}
+.boot-skip:hover{ color: #cfe; border-color: #3d7a72; }
+
+/* ---------- POST screen ---------- */
+.boot-stage{ position:absolute; inset:0; display:none; }
+.boot-stage.active{ display:block; }
+
+#stage-post{ padding: 28px 34px; font-size: 13px; line-height: 1.65; }
+.post-header{ color: #ff9d5c; font-weight: 700; margin-bottom: 2px; }
+.post-sub{ color: #5c6a73; margin-bottom: 18px; font-size: 12px; }
+.post-line{ white-space: pre; opacity: 0; animation: post-in .12s forwards; }
+.post-line .ok{ color: #6ee7d8; }
+.post-line .warn{ color: #ff9d5c; }
+.post-line .val{ color: #b9c4ca; }
+@keyframes post-in{ to{ opacity: 1; } }
+.post-footer{ margin-top: 22px; color: #4b5860; font-size: 11.5px; border-top: 1px solid #1a1f22; padding-top: 12px; }
+.post-footer kbd{ background:#15191c; border:1px solid #262c30; border-radius:3px; padding:1px 6px; color:#cfd8dc; font-family: var(--mono); }
+.post-mem{ margin-top: 10px; font-size: 12px; color: #7c8a95; }
+
+/* ---------- bootloader (GRUB-esque) ---------- */
+#stage-grub{ display:none; padding: 60px 0 0; }
+#stage-grub.active{ display:block; }
+.grub-box{ max-width: 640px; margin: 0 auto; border: 1px solid #2a3138; padding: 26px 30px 20px; background: #060809; }
+.grub-title{ color: #eef3f5; font-size: 13px; margin-bottom: 4px; }
+.grub-sub{ color: #4b5860; font-size: 11px; margin-bottom: 20px; }
+.grub-menu{ list-style:none; margin:0; padding:0; }
+.grub-item{ padding: 7px 10px; font-size: 13px; color: #8994a0; cursor: pointer; border-left: 3px solid transparent; }
+.grub-item .arrow{ display:inline-block; width: 18px; color: #ff9d5c; }
+.grub-item.sel{ background: #14181b; color: #eef3f5; border-left-color: #ff9d5c; }
+.grub-hint{ margin-top: 22px; font-size: 11px; color: #4b5860; border-top: 1px solid #1a1f22; padding-top: 14px; }
+.grub-hint b{ color: #6ee7d8; font-weight: 600; }
+.grub-countdown{ color: #ff9d5c; }
+
+/* ---------- kernel log ---------- */
+#stage-klog{ padding: 22px 30px; font-size: 12.5px; line-height: 1.85; overflow: hidden; }
+.klog-line{ opacity: 0; animation: post-in .1s forwards; white-space: pre-wrap; }
+.klog-line .tag-ok{ color: #6ee7d8; }
+.klog-line .tag-warn{ color: #ff9d5c; }
+.klog-line .ts{ color: #3a444c; }
+.klog-progress-wrap{ margin-top: 18px; }
+.klog-bar{ height: 4px; background: #14181b; border-radius: 2px; overflow: hidden; width: 320px; }
+.klog-bar-fill{ height:100%; width:0%; background: linear-gradient(90deg, #6ee7d8, #ff9d5c); transition: width .15s linear; }
+.klog-label{ font-size: 11px; color: #4b5860; margin-top: 6px; }
+
+/* ---------- lock screen ---------- */
+#stage-lock{
+  padding: 0; display:flex; flex-direction:column; align-items:center; justify-content: center;
+  background:
+    radial-gradient(ellipse 900px 500px at 20% 0%, rgba(255,157,92,0.10), transparent 60%),
+    radial-gradient(ellipse 900px 600px at 100% 15%, rgba(110,231,216,0.10), transparent 55%),
+    #05070a;
+  cursor: pointer;
+}
+.lock-time{ font-family: var(--mono); font-weight: 800; font-size: clamp(56px, 12vw, 108px); color: #eef3f5; letter-spacing: -0.02em; line-height: 1; }
+.lock-date{ font-family: var(--mono); font-size: 16px; color: #7c8a95; margin-top: 10px; }
+.lock-hint{ position:absolute; bottom: 46px; font-family: var(--mono); font-size: 12px; color: #4b5860; letter-spacing: .04em; animation: lock-pulse 2s ease-in-out infinite; }
+@keyframes lock-pulse{ 0%,100%{ opacity: .5; } 50%{ opacity: 1; } }
+
+.lock-signin{ position:absolute; inset:0; display:none; flex-direction:column; align-items:center; justify-content:center; background: rgba(5,7,10,0.88); backdrop-filter: blur(6px); }
+.lock-signin.show{ display:flex; }
+.lock-avatar{ width: 88px; height: 88px; border-radius: 50%; border: 2px solid #1f2830; box-shadow: 0 0 0 5px #11171d, 0 0 30px rgba(255,157,92,0.18); }
+.lock-name{ font-family: var(--mono); font-weight: 700; font-size: 20px; margin-top: 16px; color: #eef3f5; }
+.lock-role{ font-family: var(--mono); font-size: 12px; color: #6ee7d8; margin-top: 4px; }
+.lock-signin-btn{ margin-top: 24px; font-family: var(--mono); font-size: 13px; padding: 10px 22px; border-radius: 999px; border: 1px solid #ff9d5c; color: #ff9d5c; background: rgba(255,157,92,0.08); cursor: pointer; }
+.lock-signin-btn:hover{ background: rgba(255,157,92,0.16); }
+.lock-note{ margin-top: 10px; font-family: var(--mono); font-size: 11px; color: #4b5860; }
+
+/* ---------- shutdown / restart overlays reuse #boot too ---------- */
+.boot-logo-mark{ display:inline-flex; align-items:center; gap:8px; font-family: var(--mono); font-weight:800; letter-spacing:.05em; }
+.boot-logo-mark .dot{ width:8px; height:8px; border-radius:50%; background:#ff9d5c; box-shadow:0 0 10px #ff9d5c; }
+
+/* ---------- BIOS setup utility (classic Award/AMI look — intentionally clashes with the OS theme) ---------- */
+#stage-bios{
+  background: #00007e;
+  color: #d6d6d6;
+  font-family: var(--mono);
+  padding: 22px 40px;
+  display: none;
+}
+#stage-bios.active{ display: block; }
+.bios-frame{ max-width: 900px; margin: 0 auto; border: 3px double #b6b6b6; background: #0000a8; padding: 0; }
+.bios-title{ text-align:center; background:#b6b6b6; color:#00007e; font-weight:800; font-size:14px; padding:5px 0; letter-spacing:.06em; }
+.bios-menubar{ display:flex; background:#0000a8; border-bottom: 1px solid #4848c8; padding: 4px 6px; gap: 2px; }
+.bios-tab{ font-family: var(--mono); font-size:12.5px; padding: 5px 14px; color:#c8c8e8; background:transparent; border:none; cursor:pointer; }
+.bios-tab.active{ background:#c8c8c8; color:#00007e; font-weight:700; }
+.bios-body{ min-height: 260px; padding: 22px 30px; font-size:13px; line-height:2; }
+.bios-row{ display:flex; justify-content:space-between; max-width: 560px; border-bottom: 1px dotted #4848c8; padding: 3px 0; }
+.bios-row .br-label{ color:#c8c8e8; }
+.bios-row .br-val{ color:#ffff54; }
+.bios-row.bios-interactive{ cursor:pointer; }
+.bios-row.bios-interactive:hover .br-val{ text-decoration: underline; }
+.bios-note{ margin-top:18px; color:#8a8ad0; font-size:12px; max-width:560px; }
+.bios-exit-btn{ margin-top:22px; font-family: var(--mono); font-size:12.5px; padding: 9px 20px; background:#c8c8c8; color:#00007e; border:none; font-weight:700; cursor:pointer; }
+.bios-exit-btn:hover{ background:#ffff54; }
+.bios-footer{ display:flex; gap:20px; background:#c8c8c8; color:#00007e; padding: 6px 16px; font-size:11.5px; font-weight:700; }
+.bios-footer b{ background:#00007e; color:#ffff54; padding:1px 6px; margin-right:4px; }
