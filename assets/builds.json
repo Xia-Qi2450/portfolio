@@ -54,12 +54,12 @@
     "url": "https://github.com/Xia-Qi2450/pythonTest",
     "lang": "Python",
     "status": "in-progress",
-    "progress": 12
+    "progress": 16.5
   },
   {
     "title": "portfolio",
     "desc": "A Portfolio website in the design of a operating system with a POST screen, a BIOS and Asset loading resembling to Arch Linux. It's a huge project and will likely slow me down on other ones. Currently in version 1 and you are currently viewing it.",
-    "url": "https://xia-qi2450.github.io/dogcheck/?error=403&url=https://github.com/Xia-Qi2450/XiaWebOS/",
+    "url": "https://xia-qi.is-a.dev",
     "lang": "HTML",
     "status": "in-progress",
     "progress": 15
