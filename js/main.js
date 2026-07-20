@@ -5,8 +5,8 @@
 
 document.addEventListener('DOMContentLoaded', () => {
   // restore saved personalization before first paint of the desktop
-  if(window.applyAccent) window.applyAccent(LS.get('xiaos-accent') || 'dual');
-  if(LS.get('xiaos-reduce-motion') === 'on') document.body.classList.add('reduce-motion');
+  if(window.applyAccent) {window.applyAccent(LS.get('xiaos-accent') || 'dual');};
+  if(LS.get('xiaos-reduce-motion') === 'on') {document.body.classList.add('reduce-motion');};
 
   WM.init();
   Desktop.init();

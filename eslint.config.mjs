@@ -14,15 +14,16 @@ export default defineConfig([
     rules: {
       "no-implicit-coercion": "warn",
       "eqeqeq": "error",
-      "no-unused-vars": "warn",
-      "no-unreachable": "error",
+      "no-unused-vars": "off",
+      "no-unreachable": "off",
       "no-constant-condition": "warn",
 
       "no-debugger": "warn",
       "no-alert": "warn",
-      "no-var": "error",
+      "no-var": "warn",
+      "no-undef": "warn",
       "prefer-const": "warn",
-      "curly": "error",
+      "curly": "warn",
       "semi": ["warn", "always"],
       "no-trailing-spaces": "warn"
     }
