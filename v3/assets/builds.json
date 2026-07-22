@@ -9,6 +9,15 @@
     "featured": true
   },
   {
+    "title": "python-war-crimes",
+    "desc": "A huge collection of the most cursed and badly coded python snippets that will haunt professional programmers at 3 AM. This repository is intended for educational and comedic purpose only. Contribute to this madness by making a Pull Request.",
+    "url": "https://github.com/Xia-Qi2450/python-war-crimes",
+    "lang": "Python",
+    "status": "finished",
+    "progress": 100,
+    "featured": true
+  },
+  {
     "title": "robo-queue",
     "desc": "A small Python program built to help with robotics competition prep. Uses text-to-speech to announce the names.",
     "url": "https://github.com/Xia-Qi2450/robo-queue",
