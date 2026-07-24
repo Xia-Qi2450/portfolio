@@ -42,6 +42,14 @@
     "progress": 100
   },
   {
+    "title": "portfolio",
+    "desc": "A Portfolio website in the design of a operating system with a POST screen, a BIOS and Asset loading resembling to Arch Linux. It's a huge project and will likely slow me down on other ones. Currently released and viewable, best on Laptops and Desktops.",
+    "url": "https://xia-qi.is-a.dev",
+    "lang": "HTML",
+    "status": "in-progress",
+    "progress": 15
+  },
+  {
     "title": "animeClassPython",
     "desc": "Ran out of project ideas mid-way through this one. Probably easier to just go read the code. It's still somehow actively editied",
     "url": "https://github.com/Xia-Qi2450/animeClassPython",
@@ -64,14 +72,6 @@
     "lang": "Python",
     "status": "in-progress",
     "progress": 16.5
-  },
-  {
-    "title": "portfolio",
-    "desc": "A Portfolio website in the design of a operating system with a POST screen, a BIOS and Asset loading resembling to Arch Linux. It's a huge project and will likely slow me down on other ones. Currently released and viewable, best on Laptops and Desktops.",
-    "url": "https://xia-qi.is-a.dev",
-    "lang": "HTML",
-    "status": "in-progress",
-    "progress": 15
   },
   {
     "title": "musicTrasition",
