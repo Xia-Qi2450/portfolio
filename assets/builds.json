@@ -18,6 +18,14 @@
     "featured": true
   },
   {
+    "title": "Deep-Focus",
+    "desc": "A Pomodoro timer paired with a music player, used for study sessions and just focusing in general. Originally started as a way to learn Web Dev.",
+    "url": "https://github.com/Xia-Qi2450/Deep-Focus",
+    "lang": "HTML",
+    "status": "finished",
+    "progress": 100
+  },
+  {
     "title": "robo-queue",
     "desc": "A small Python program built to help with robotics competition prep. Uses text-to-speech to announce the names.",
     "url": "https://github.com/Xia-Qi2450/robo-queue",
