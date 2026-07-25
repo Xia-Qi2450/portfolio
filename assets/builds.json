@@ -18,12 +18,22 @@
     "featured": true
   },
   {
+    "title": "pyhash",
+    "desc": "A python script that you can use to verify the integrity of your files by hashing them and checking back on them later. Now comes in bundled executables for Windows, Linux and macOS.",
+    "url": "https://github.com/Xia-Qi2450/pyhash",
+    "lang": "Python",
+    "status": "finished",
+    "progress": 100,
+    "featured": true
+  },
+  {
     "title": "Deep-Focus",
     "desc": "A Pomodoro timer paired with a music player, used for study sessions and just focusing in general. Originally started as a way to learn Web Dev.",
     "url": "https://github.com/Xia-Qi2450/Deep-Focus",
     "lang": "HTML",
     "status": "finished",
-    "progress": 100
+    "progress": 100,
+    "featured": true
   },
   {
     "title": "robo-queue",
