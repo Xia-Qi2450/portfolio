@@ -44,6 +44,14 @@
     "progress": 100
   },
   {
+    "title": "timekeeper",
+    "desc": "A 7-segment clock for in the browser for timing and classroom purposes.",
+    "url": "https://github.com/Xia-Qi2450/timekeeper",
+    "lang": "HTML",
+    "status": "finished",
+    "progress": 100
+  },
+  {
     "title": "SCP_Data",
     "desc": "A terminal UI that displays articles straight from the official SCP Wiki. You have to add SCP entries by yourself.",
     "url": "https://github.com/Xia-Qi2450/SCP_Data",
@@ -89,7 +97,7 @@
     "url": "https://github.com/Xia-Qi2450/pythonTest",
     "lang": "Python",
     "status": "in-progress",
-    "progress": 30
+    "progress": 50
   },
   {
     "title": "musicTrasition",
