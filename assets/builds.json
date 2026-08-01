@@ -89,7 +89,7 @@
     "url": "https://github.com/Xia-Qi2450/EulerProjectAttempts",
     "lang": "Python",
     "status": "in-progress",
-    "progress": 50
+    "progress": 60
   },
   {
     "title": "pythonTest",
@@ -111,6 +111,22 @@
     "title": "ultrakillStyle",
     "desc": "A recreation of the ULTRAKILL style meter in the terminal that reacts to what you do on your device.",
     "url": "https://xia-qi2450.github.io/dogcheck/?error=404&url=https://github.com/Xia-Qi2450/ultrakillStyle/",
+    "lang": "Python",
+    "status": "todo",
+    "progress": 0
+  },
+  {
+    "title": "mathTools",
+    "desc": "A website/script with a lot of useful math fuctions and equations that you can just enter into calculate things without busting out notes.",
+    "url": "https://xia-qi2450.github.io/dogcheck/?error=404&url=https://github.com/Xia-Qi2450/mathTools/",
+    "lang": "HTML/Python",
+    "status": "todo",
+    "progress": 0
+  },
+  {
+    "title": "IBSubjectSelector",
+    "desc": "A website to help IB Diploma students select their optimal subject to major in based on either their score or their favorite subjects.",
+    "url": "https://xia-qi2450.github.io/dogcheck/?error=404&url=https://github.com/Xia-Qi2450/IBSubjectSelector/",
     "lang": "Python",
     "status": "todo",
     "progress": 0
