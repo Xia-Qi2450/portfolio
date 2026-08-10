@@ -52,6 +52,14 @@
     "progress": 100
   },
   {
+    "title": "quintupletSort",
+    "desc": "A meme Python sorting algorithm referencing the anime The Quintessential Quintuplets. Not efficient at all but it sorts.",
+    "url": "https://github.com/Xia-Qi2450/quintupletSort",
+    "lang": "Python",
+    "status": "finished",
+    "progress": 100
+  },
+  {
     "title": "SCP_Data",
     "desc": "A terminal UI that displays articles straight from the official SCP Wiki. You have to add SCP entries by yourself.",
     "url": "https://github.com/Xia-Qi2450/SCP_Data",
@@ -89,7 +97,7 @@
     "url": "https://github.com/Xia-Qi2450/EulerProjectAttempts",
     "lang": "Python",
     "status": "in-progress",
-    "progress": 80
+    "progress": 90
   },
   {
     "title": "pythonTest",
