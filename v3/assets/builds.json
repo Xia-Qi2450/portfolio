@@ -9,6 +9,15 @@
     "featured": true
   },
   {
+    "title": "EulerProjectAttempts",
+    "desc": "Ongoing attempts at the Project Euler archive of problems — open-ended by nature, so this one never really finishes. (I'm finally finished with the first 100 questions, now I will continue until probably 1000)",
+    "url": "https://github.com/Xia-Qi2450/EulerProjectAttempts",
+    "lang": "Python",
+    "status": "finished",
+    "progress": 100,
+    "featured": true
+  },
+  {
     "title": "python-war-crimes",
     "desc": "A huge collection of the most cursed and badly coded python snippets that will haunt professional programmers at 3 AM. This repository is intended for educational and comedic purpose only. Contribute to this madness by making a Pull Request.",
     "url": "https://github.com/Xia-Qi2450/python-war-crimes",
@@ -90,14 +99,6 @@
     "lang": "Python",
     "status": "in-progress",
     "progress": 12
-  },
-  {
-    "title": "EulerProjectAttempts",
-    "desc": "Ongoing attempts at the Project Euler archive of problems — open-ended by nature, so this one never really finishes. (I'm aiming to finish 100 questions)",
-    "url": "https://github.com/Xia-Qi2450/EulerProjectAttempts",
-    "lang": "Python",
-    "status": "in-progress",
-    "progress": 95
   },
   {
     "title": "pythonTest",
